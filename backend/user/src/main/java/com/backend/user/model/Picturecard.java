@@ -1,0 +1,29 @@
+package com.backend.user.model;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "picturecard")
+public class Picturecard {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ColumnDefault("nextval('picturecard_picturecardid_seq'")
+    @Column(name = "picturecardid", nullable = false)
+    private Integer id;
+
+    @Column(name = "pictureurl", nullable = false, length = 100)
+    private String pictureurl;
+
+    @Column(name = "isvalid", nullable = false)
+    private Boolean isvalid = false;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "userid", nullable = false)
+    private User userid;
+
+}
