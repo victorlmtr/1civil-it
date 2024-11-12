@@ -4,7 +4,7 @@ import com.backend.report.model.dto.PictureDto;
 import com.backend.report.model.entity.Picture;
 import org.mapstruct.*;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {ReportMapper.class})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface PictureMapper {
     Picture toEntity(PictureDto pictureDto);
 
