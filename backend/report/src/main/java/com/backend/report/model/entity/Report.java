@@ -3,9 +3,10 @@ package com.backend.report.model.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -13,7 +14,8 @@ import java.time.Instant;
 @Table(name = "report")
 public class Report {
     @Id
-    @ColumnDefault("nextval('report_reportid_seq'::regclass)")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "report_id_gen")
+    @SequenceGenerator(name = "report_id_gen", sequenceName = "report_reportid_seq", allocationSize = 1)
     @Column(name = "reportid", nullable = false)
     private Integer id;
 
@@ -23,14 +25,18 @@ public class Report {
     @Column(name = "creationdate", nullable = false)
     private Instant creationdate;
 
-    @Column(name = "comment", length = 2000)
+    @Column(name = "comment", length = Integer.MAX_VALUE)
     private String comment;
-
-    @Column(name = "addressid")
-    private Integer addressid;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "typeid", nullable = false)
-    private ReportType typeid;
+    private Reporttype typeid;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "locationid", nullable = false)
+    private Location locationid;
+
+    @OneToMany(mappedBy = "reportid")
+    private Set<Picture> pictures = new LinkedHashSet<>();
 
 }
