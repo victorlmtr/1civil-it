@@ -6,8 +6,6 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -15,18 +13,17 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ColumnDefault("nextval('users_userid_seq'")
     @Column(name = "userid", nullable = false)
     private Integer id;
 
-    @Column(name = "firstname", nullable = false, length = 50)
+    @Column(name = "firstname", nullable = false, length = 100)
     private String firstname;
 
-    @Column(name = "lastname", nullable = false, length = 70)
+    @Column(name = "lastname", nullable = false, length = 100)
     private String lastname;
 
-    @Column(name = "passwordhash", nullable = false)
+    @Column(name = "passwordhash", nullable = false, length = 225)
     private String passwordhash;
 
     @Column(name = "creationdate", nullable = false)
@@ -35,7 +32,7 @@ public class User {
     @Column(name = "email", nullable = false, length = 120)
     private String email;
 
-    @Column(name = "phonenumber", nullable = false, length = 15)
+    @Column(name = "phonenumber", nullable = false, length = 10)
     private String phonenumber;
 
     @Column(name = "isverified", nullable = false)
@@ -44,14 +41,12 @@ public class User {
     @Column(name = "isenabled", nullable = false)
     private Boolean isenabled = false;
 
-    @Column(name = "addressid")
-    private Integer addressid;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "roleid", nullable = false)
     private Role roleid;
 
-    @OneToMany(mappedBy = "userid")
-    private Set<PictureCard> pictureCards = new LinkedHashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cityid")
+    private City cityid;
 
 }

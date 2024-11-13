@@ -1,13 +1,10 @@
 package com.backend.user.model.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.Instant;
-import java.util.Set;
 
-@Getter
-@Setter
+@Data
 public class UserDTO {
 
     private Integer id;
@@ -15,10 +12,9 @@ public class UserDTO {
     private String lastname;
     private String email;
     private String phonenumber;
+    private Instant creationdate;
     private Boolean isverified;
     private Boolean isenabled;
-    private Instant creationdate;
-    private Integer addressid;
-    private Integer roleid;
-    private Set<Integer> picturecardIds;
+    private Integer roleId;
+    private Integer cityId;
 }

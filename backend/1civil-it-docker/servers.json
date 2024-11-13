@@ -1,0 +1,29 @@
+{
+    "Servers": {
+      "1": {
+        "Name": "1civilit-Server",
+        "Group": "Servers",
+        "Host": "postgres-db",
+        "Port": 5432,
+        "Username": "user",
+        "Password": "password",
+        "MaintenanceDB": "postgres",
+        "SSLMode": "prefer",
+        "Databases": {
+          "1": {
+            "DBName": "report_service_db",
+            "Comments": "Database for report microservice"
+          },
+          "2": {
+            "DBName": "reportReview_service_db",
+            "Comments": "Database for reportReview microservice"
+          },
+          "3": {
+            "DBName": "user_service_db",
+            "Comments": "Database for user microservice"
+          }
+        }
+      }
+    }
+  }
+  
