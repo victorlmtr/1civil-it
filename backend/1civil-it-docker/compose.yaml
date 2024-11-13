@@ -15,7 +15,7 @@ services:
 
   postgres-db:
     image: postgres:latest
-    container_name: postgres-db
+    container_name: 1civil-it_db
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
