@@ -1,7 +1,10 @@
 package com.backend.user.model.repository;
 
-import com.backend.user.model.Entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.backend.user.model.Entity.Role;
 
+@Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
+
 }
