@@ -41,7 +41,7 @@ INSERT INTO public.reportStatus (statusName) VALUES
 -- Insertion des données factices pour la table reportReview
 ------------------------------------------------------------
 INSERT INTO public.reportReview (reportId, enforcerId, reviewComment, reviewTimestamp, statusId) VALUES 
-(1, 101, 'Examen initial du rapport, en attente de recherches supplémentaires.', NOW(), 1),
-(2, 102, 'Suivi : informations supplémentaires requises.', NOW(), 2),
-(1, 101, 'Problème résolu. Rapport marqué comme fermé.', NOW(), 3),
-(3, 103, 'Rapport examiné et clôturé par l’agent d’exécution.', NOW(), 3);
+(1, 1, 'Examen initial du rapport, en attente de recherches supplémentaires.', NOW(), 1),
+(2, 1, 'Suivi : informations supplémentaires requises.', NOW(), 2),
+(1, 1, 'Problème résolu. Rapport marqué comme fermé.', NOW(), 3),
+(3, 1, 'Rapport examiné et clôturé par l’agent d’exécution.', NOW(), 3);
