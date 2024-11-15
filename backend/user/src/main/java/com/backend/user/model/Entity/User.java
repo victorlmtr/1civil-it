@@ -41,12 +41,12 @@ public class User {
     @Column(name = "isenabled", nullable = false)
     private Boolean isenabled = false;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "roleid", nullable = false)
-    private Role roleid;
+    private Role role;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cityid")
-    private City cityid;
+    private City city;
 
 }

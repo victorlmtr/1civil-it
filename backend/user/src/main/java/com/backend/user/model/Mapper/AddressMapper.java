@@ -2,14 +2,15 @@ package com.backend.user.model.Mapper;
 
 import com.backend.user.model.Entity.Address;
 import com.backend.user.model.dto.AddressDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.*;
 
-@Mapper
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {UserMapper.class})
 public interface AddressMapper {
-    AddressMapper INSTANCE = Mappers.getMapper(AddressMapper.class);
 
     AddressDTO toDTO(Address address);
 
     Address toEntity(AddressDTO addressDTO);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Address partialUpdate(AddressDTO addressDTO, @MappingTarget Address address);
 }

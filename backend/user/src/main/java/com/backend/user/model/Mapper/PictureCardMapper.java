@@ -2,14 +2,15 @@ package com.backend.user.model.Mapper;
 
 import com.backend.user.model.Entity.PictureCard;
 import com.backend.user.model.dto.PictureCardDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.*;
 
-@Mapper
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {UserMapper.class})
 public interface PictureCardMapper {
-    PictureCardMapper INSTANCE = Mappers.getMapper(PictureCardMapper.class);
 
     PictureCardDTO toDTO(PictureCard picturecard);
 
     PictureCard toEntity(PictureCardDTO picturecardDTO);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    PictureCard partialUpdate(PictureCardDTO pictureCardDTO, @MappingTarget PictureCard pictureCard);
 }

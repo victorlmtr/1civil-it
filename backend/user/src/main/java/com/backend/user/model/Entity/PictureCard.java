@@ -21,8 +21,8 @@ public class PictureCard {
     @Column(name = "isvalid", nullable = false)
     private Boolean isvalid = false;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "userid", nullable = false)
-    private User userid;
+    private User user;
 
 }

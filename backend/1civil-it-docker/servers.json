@@ -14,14 +14,14 @@
             "DBName": "report_service_db",
             "Comments": "Database for report microservice"
           },
-          "2": {
-            "DBName": "reportReview_service_db",
-            "Comments": "Database for reportReview microservice"
-          },
-          "3": {
-            "DBName": "user_service_db",
-            "Comments": "Database for user microservice"
-          }
+        "2": {
+          "DBName": "reportReview_service_db",
+          "Comments": "Database for reportReview microservice"
+        },
+        "3": {
+          "DBName": "user_service_db",
+          "Comments": "Database for user microservice"
+        }
         }
       }
     }

@@ -1,10 +1,12 @@
 package com.backend.user.model.dto;
 
-import lombok.Data;
+import lombok.*;
 
 import java.time.Instant;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserDTO {
 
     private Integer id;
@@ -15,6 +17,6 @@ public class UserDTO {
     private Instant creationdate;
     private Boolean isverified;
     private Boolean isenabled;
-    private Integer roleId;
-    private Integer cityId;
+    private RoleDTO role;
+    private CityDTO city;
 }

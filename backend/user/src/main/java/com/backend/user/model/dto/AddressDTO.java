@@ -1,14 +1,16 @@
 package com.backend.user.model.dto;
 
-import lombok.Data;
+import lombok.*;
+
+import java.io.Serializable;
 
 @Data
-public class AddressDTO {
+public class AddressDTO implements Serializable {
 
     private Integer id;
     private String streetnumber;
     private String streetname;
     private String adressdetails;
-    private Integer cityId;
-    private Integer userId;
+    private CityDTO cityDTO;
+    private UserDTO user;
 }

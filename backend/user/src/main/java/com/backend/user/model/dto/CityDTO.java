@@ -1,9 +1,13 @@
 package com.backend.user.model.dto;
 
-import lombok.Data;
+import lombok.*;
+
+import java.io.Serializable;
 
 @Data
-public class CityDTO {
+@NoArgsConstructor
+@AllArgsConstructor
+public class CityDTO implements Serializable {
 
     private Integer id;
     private String cityname;
