@@ -4,9 +4,7 @@ import lombok.*;
 
 import java.io.Serializable;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Value
 public class CityDTO implements Serializable {
 
     private Integer id;

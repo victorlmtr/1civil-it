@@ -2,12 +2,11 @@ package com.backend.user.model.dto;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.Instant;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class UserDTO {
+@Value
+public class UserDTO implements Serializable {
 
     private Integer id;
     private String firstname;

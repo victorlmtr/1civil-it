@@ -4,10 +4,8 @@ import lombok.*;
 
 import java.io.Serializable;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class RoleDTO {
+@Value
+public class RoleDTO implements Serializable {
 
     private Integer id;
     private String rolename;

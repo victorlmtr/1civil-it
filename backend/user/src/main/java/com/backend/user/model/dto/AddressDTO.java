@@ -4,7 +4,7 @@ import lombok.*;
 
 import java.io.Serializable;
 
-@Data
+@Value
 public class AddressDTO implements Serializable {
 
     private Integer id;

@@ -28,7 +28,7 @@ public class Address {
     @JoinColumn(name = "cityid", nullable = false)
     private City city;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "userid", nullable = false)
     private User user;
 

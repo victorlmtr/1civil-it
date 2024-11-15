@@ -4,10 +4,8 @@ import lombok.*;
 
 import java.io.Serializable;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class PictureCardDTO {
+@Value
+public class PictureCardDTO implements Serializable {
 
     private Integer id;
     private String pictureurl;
