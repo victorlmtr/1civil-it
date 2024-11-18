@@ -11,6 +11,6 @@ public class AddressDTO implements Serializable {
     private String streetnumber;
     private String streetname;
     private String adressdetails;
-    private CityDTO cityDTO;
+    private CityDTO city;
     private UserDTO user;
 }

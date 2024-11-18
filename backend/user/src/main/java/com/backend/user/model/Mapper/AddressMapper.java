@@ -4,7 +4,7 @@ import com.backend.user.model.Entity.Address;
 import com.backend.user.model.dto.AddressDTO;
 import org.mapstruct.*;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {UserMapper.class})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {CityMapper.class, UserMapper.class})
 public interface AddressMapper {
 
     AddressDTO toDTO(Address address);
