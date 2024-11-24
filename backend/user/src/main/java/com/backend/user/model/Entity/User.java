@@ -43,10 +43,10 @@ public class User {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "roleid", nullable = false)
-    private Role roleid;
+    private Role role;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cityid")
-    private City cityid;
+    private City city;
 
 }

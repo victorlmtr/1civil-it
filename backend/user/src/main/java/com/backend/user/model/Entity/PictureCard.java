@@ -23,6 +23,6 @@ public class PictureCard {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "userid", nullable = false)
-    private User userid;
+    private User user;
 
 }

@@ -1,12 +1,14 @@
 package com.backend.user.model.dto;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
-public class PictureCardDTO {
+import java.io.Serializable;
+
+@Value
+public class PictureCardDTO implements Serializable {
 
     private Integer id;
     private String pictureurl;
     private Boolean isvalid;
-    private Integer userId;
+    private UserDTO user;
 }

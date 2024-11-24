@@ -2,14 +2,15 @@ package com.backend.user.model.Mapper;
 
 import com.backend.user.model.Entity.City;
 import com.backend.user.model.dto.CityDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.*;
 
-@Mapper
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CityMapper {
-    CityMapper INSTANCE = Mappers.getMapper(CityMapper.class);
 
     CityDTO toDTO(City city);
 
     City toEntity(CityDTO cityDTO);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    City partialUpdate(CityDTO cityDTO, @MappingTarget City city);
 }

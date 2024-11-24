@@ -2,14 +2,15 @@ package com.backend.user.model.Mapper;
 
 import com.backend.user.model.Entity.Role;
 import com.backend.user.model.dto.RoleDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.*;
 
-@Mapper
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface RoleMapper {
-    RoleMapper INSTANCE = Mappers.getMapper(RoleMapper.class);
 
     RoleDTO toDTO(Role role);
 
     Role toEntity(RoleDTO roleDTO);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Role partialUpdate(RoleDTO roleDTO, @MappingTarget Role role);
 }

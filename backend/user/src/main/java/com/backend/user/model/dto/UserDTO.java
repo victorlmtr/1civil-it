@@ -1,11 +1,12 @@
 package com.backend.user.model.dto;
 
-import lombok.Data;
+import lombok.*;
 
+import java.io.Serializable;
 import java.time.Instant;
 
-@Data
-public class UserDTO {
+@Value
+public class UserDTO implements Serializable {
 
     private Integer id;
     private String firstname;
@@ -15,6 +16,6 @@ public class UserDTO {
     private Instant creationdate;
     private Boolean isverified;
     private Boolean isenabled;
-    private Integer roleId;
-    private Integer cityId;
+    private RoleDTO role;
+    private CityDTO city;
 }

@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/backend/user/pom.xml" />
         <option value="$PROJECT_DIR$/backend/address/pom.xml" />
+        <option value="$PROJECT_DIR$/backend/report/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
