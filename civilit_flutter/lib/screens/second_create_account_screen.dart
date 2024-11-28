@@ -131,9 +131,9 @@ class _SecondCreateAccountScreenState extends State<SecondCreateAccountScreen> {
               ElevatedButton.icon(
                 onPressed: () => _showImageOptions(context),
                 icon: const Icon(Icons.camera_alt),
-                label: const Text('Ajouter ID Carte'),
+                label: const Text('Carte d\'identité'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
