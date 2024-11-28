@@ -30,17 +30,23 @@ class _HomeScreenState extends State<HomeScreen> {
             Text(
               'Signaler',
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onSecondary,
+                color: Theme
+                    .of(context)
+                    .colorScheme
+                    .onSecondary,
                 fontSize: 32,
               ),
             ),
           ],
         ),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .primary,
       ),
       body: Center(
         child: Material(
-          elevation: 8,
+          elevation: 8, // Add shadow
           shape: const CircleBorder(),
           child: InkWell(
             onTap: () {
@@ -51,32 +57,55 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 300,
               height: 300,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
-                borderRadius: BorderRadius.circular(200),
+                color: Theme
+                    .of(context)
+                    .colorScheme
+                    .tertiary,
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Text(
+                  'Créer un signalement',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme
+                        .of(context)
+                        .colorScheme
+                        .onTertiary,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Theme.of(context).colorScheme.primary,
-        unselectedItemColor: Theme.of(context).colorScheme.onSurface,
-        onTap: _onItemTapped,
         currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
-            label: 'Suivre',
-            icon: Icon(Icons.visibility),
+            icon: Icon(Icons.document_scanner),
+            label: 'Signaler',
           ),
           BottomNavigationBarItem(
-            label: 'Historique',
             icon: Icon(Icons.history),
+            label: 'Mes signalements',
           ),
           BottomNavigationBarItem(
-            label: 'Contact',
-            icon: Icon(Icons.phone),
+            icon: Icon(Icons.settings),
+            label: 'Paramètres',
           ),
         ],
+        selectedItemColor: Theme
+            .of(context)
+            .colorScheme
+            .secondary,
+        unselectedItemColor: Theme
+            .of(context)
+            .colorScheme
+            .onSurfaceVariant,
       ),
     );
   }
