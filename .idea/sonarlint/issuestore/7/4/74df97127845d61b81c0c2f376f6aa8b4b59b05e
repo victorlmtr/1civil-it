@@ -1,0 +1,13 @@
+
+c
+java:S2184"FCast one of the operands of this multiplication operation to a "long".(•ö„·8ó†âÆ·2
+v	java:S116"ZRename this field "EXPIRATION_TIME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•ö„·8ı†âÆ·2
+>
+java:S1170"!Make this final field static too.(•ö„·8ş†âÆ·2
+L	java:S106"+Replace this use of System.out by a logger.(Ï”Á‘úÿÿÿÿ8„‡âÆ·2
+M
+java:S1874"0Remove this use of "signWith"; it is deprecated.(¸Êğ8†‡âÆ·2
+K
+java:S1874(".Remove this use of "parser"; it is deprecated.(¤‹ıà8‡‡âÆ·2
+Q
+java:S1874)"5Remove this use of "setSigningKey"; it is deprecated.(‘­8‡‡âÆ·2

@@ -13,6 +13,7 @@ import java.time.Instant;
 @Table(name = "users")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ColumnDefault("nextval('users_userid_seq'")
     @Column(name = "userid", nullable = false)
     private Integer id;
