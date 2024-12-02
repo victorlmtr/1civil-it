@@ -1,0 +1,1 @@
+ E:\\Coding\\projects\\1civil-it\\civilit_flutter\\.dart_tool\\flutter_build\\36bbd1e0e85400acf392d2a633116bc1\\native_assets.yaml: 
