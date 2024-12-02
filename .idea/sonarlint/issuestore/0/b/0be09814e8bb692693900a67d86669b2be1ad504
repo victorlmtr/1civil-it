@@ -1,20 +1,0 @@
-
-ˆ
-java:S2184"FCast one of the operands of this multiplication operation to a "long".(ÂöÒ@8™ºÃÀ·2J$24681681-7416-426e-8f0f-1c47050b88b5
-•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é°ŒéJ$cfbf09b5-51e0-480f-b754-9025239f210a
-œ	java:S116"URename this field "SECRET_KEY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ø¤àªúÿÿÿÿ8ºÃÀ·2J$a22fb5a8-de34-4918-a48b-80170e8f00f5
-›	java:S116"ZRename this field "EXPIRATION_TIME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂöÒ@8ºÃÀ·2J$d1e006ff-4f24-4e72-8dd1-7f728deb4153
-i
-java:S1170"!Make this final field static too.(Ø¤àªúÿÿÿÿ8ºÃÀ·2J$6da83514-87db-41c2-a6ea-b33a1d9dc466
-c
-java:S1170"!Make this final field static too.(ÂöÒ@8ºÃÀ·2J$66f63e3d-b6ab-4190-ab4d-e7a856ee05ce
-y
-java:S6437"6Revoke and change this password, as it is compromised.(ªü§é8ıçÃÀ·2J$02463f22-4042-4d69-92db-a02f7c7f1ad0
-s
-java:S1874"0Remove this use of "signWith"; it is deprecated.(ªü§é8úÄÀ·2J$42d0b168-1295-4db1-a965-c3313116df3f
-y
-java:S6437"6Revoke and change this password, as it is compromised.(ÑƒÅÙ8üÄÀ·2J$0b928b7f-8fff-4c93-be23-9267c0ef9be7
-q
-java:S1874".Remove this use of "parser"; it is deprecated.(¤‹ıà8şçÃÀ·2J$20b39a0d-3ab6-426a-a015-caaf4cc9c413
-x
-java:S1874"5Remove this use of "setSigningKey"; it is deprecated.(ÑƒÅÙ8şçÃÀ·2J$45d80d11-efa7-4637-b06c-743233d63faa

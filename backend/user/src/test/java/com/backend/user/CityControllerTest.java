@@ -1,6 +1,6 @@
 package com.backend.user;
 
-import com.backend.user.config.WebSecurityConfig;
+import com.backend.user.security.config.WebSecurityConfig;
 import com.backend.user.controller.CityController;
 import com.backend.user.model.dto.CityDTO;
 import com.backend.user.service.CityService;

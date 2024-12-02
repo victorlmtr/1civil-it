@@ -1,8 +1,6 @@
-package com.backend.user.security;
+package com.backend.user.security.tokenJWT;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +24,8 @@ public class JwtTokenService {
 
         return Jwts.builder()
                 .setSubject(email) // Identifies the user
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // Expiration
-                .signWith(SignatureAlgorithm.HS512, key) // Signature with secret key
+                .setExpiration(expirationDate) // Expiration
+                .signWith(SignatureAlgorithm.HS256, key) // Shorter signature
                 .compact();
     }
 
@@ -43,4 +40,22 @@ public class JwtTokenService {
                 .getBody();
         return claims.getSubject(); // Return user's email
     }
+
+    public boolean validateToken(String token) {
+
+        try {
+            SecretKey key = JwtUtils.getSecretKey(secretKey);
+            Jwts.parser()
+                    .setSigningKey(key)
+                    .parseClaimsJws(token); // throws an exception if the token is invalid
+            return true;
+
+        } catch (ExpiredJwtException | MalformedJwtException | SignatureException e) {
+
+            return false; // Token is invalid or expired
+        }
+    }
+
+
+
 }

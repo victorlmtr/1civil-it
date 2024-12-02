@@ -1,4 +1,4 @@
-package com.backend.user.security;
+package com.backend.user.security.tokenJWT;
 
 import io.jsonwebtoken.security.Keys;
 

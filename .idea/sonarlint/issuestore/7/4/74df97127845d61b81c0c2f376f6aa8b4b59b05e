@@ -1,13 +1,19 @@
 
-c
-java:S2184"FCast one of the operands of this multiplication operation to a "long".(•ö„·8ó†âÆ·2
-v	java:S116"ZRename this field "EXPIRATION_TIME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•ö„·8ı†âÆ·2
->
-java:S1170"!Make this final field static too.(•ö„·8ş†âÆ·2
-L	java:S106"+Replace this use of System.out by a logger.(Ï”Á‘úÿÿÿÿ8„‡âÆ·2
-M
-java:S1874"0Remove this use of "signWith"; it is deprecated.(¸Êğ8†‡âÆ·2
-K
-java:S1874(".Remove this use of "parser"; it is deprecated.(¤‹ıà8‡‡âÆ·2
-Q
-java:S1874)"5Remove this use of "setSigningKey"; it is deprecated.(‘­8‡‡âÆ·2
+‰
+java:S2184"FCast one of the operands of this multiplication operation to a "long".(•ö„·8ó†âÆ·2J$af4bc5f0-815f-4e8e-9d84-701abe8ab3d7
+œ	java:S116"ZRename this field "EXPIRATION_TIME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•ö„·8ı†âÆ·2J$db2bbfa1-a68d-4255-a511-6128d779e7e6
+d
+java:S1170"!Make this final field static too.(•ö„·8ş†âÆ·2J$36c165ca-1ec5-4581-85bc-62d2546f790c
+r	java:S106"+Replace this use of System.out by a logger.(Ï”Á‘úÿÿÿÿ8„‡âÆ·2J$8cdd72ec-744b-4161-8779-8272671f4079
+x
+java:S1874"0Remove this use of "signWith"; it is deprecated.(×Ÿ®ıÿÿÿÿ8¥İë˜¸2J$656ef062-e83b-44ef-8410-e8a88bb2321a
+q
+java:S1874%".Remove this use of "parser"; it is deprecated.(¤‹ıà8‡‡âÆ·2J$4f005e0b-a920-4eb8-af79-4b138ea45427
+w
+java:S1874&"5Remove this use of "setSigningKey"; it is deprecated.(‘­8‡‡âÆ·2J$bcc09d0c-f486-48ed-93f5-a81df1ebe1f0
+v
+java:S1874/".Remove this use of "parser"; it is deprecated.(Ù—ÏÔûÿÿÿÿ8™Â£È·2J$083a844b-ec23-4155-a625-8debb8729ea8
+w
+java:S18740"5Remove this use of "setSigningKey"; it is deprecated.(‘­8™Â£È·2J$c6508a84-52cc-49c5-8518-13132de9c6d8
+}
+java:S18743":Remove this use of "SignatureException"; it is deprecated.(ÎÎ¹Ú8„¤È·2J$373603e8-51ce-458b-a169-570801140bfb
