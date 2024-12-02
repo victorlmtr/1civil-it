@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:geolocator/geolocator.dart';
+import '../models/report_dto.dart';
+import '../services/report_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,47 +25,23 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            Image.asset(
-              'assets/images/logo.png',
-              height: 50,
-            ),
-            const SizedBox(width: 40),
-            Text(
-              'Signaler',
-              style: TextStyle(
-                color: Theme
-                    .of(context)
-                    .colorScheme
-                    .onSecondary,
-                fontSize: 32,
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: Theme
-            .of(context)
-            .colorScheme
-            .primary,
+        title: const Text('Signaler'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Center(
         child: Material(
-          elevation: 8, // Add shadow
+          elevation: 8,
           shape: const CircleBorder(),
           child: InkWell(
-            onTap: () {
-              print('Call to Action button pressed');
+            onTap: () async {
+              await createReport(context);
             },
             customBorder: const CircleBorder(),
             child: Container(
               width: 300,
               height: 300,
               decoration: BoxDecoration(
-                color: Theme
-                    .of(context)
-                    .colorScheme
-                    .tertiary,
+                color: Theme.of(context).colorScheme.tertiary,
                 shape: BoxShape.circle,
               ),
               child: Center(
@@ -68,10 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'Créer un signalement',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Theme
-                        .of(context)
-                        .colorScheme
-                        .onTertiary,
+                    color: Theme.of(context).colorScheme.onTertiary,
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
                   ),
@@ -98,14 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Paramètres',
           ),
         ],
-        selectedItemColor: Theme
-            .of(context)
-            .colorScheme
-            .secondary,
-        unselectedItemColor: Theme
-            .of(context)
-            .colorScheme
-            .onSurfaceVariant,
       ),
     );
   }

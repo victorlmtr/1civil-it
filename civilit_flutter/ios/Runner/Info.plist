@@ -49,5 +49,9 @@
     <string>L'application requiert l'accès à votre appareil photo pour prendre une photo.</string>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>L'application requiert l'accès aux fichiers pour importer une image.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>L'application requiert l'accès à l'appareil photo pour créer un signalement.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>L'application requiert l'accès à votre position pour créer un signalement.</string>
 </dict>
 </plist>
