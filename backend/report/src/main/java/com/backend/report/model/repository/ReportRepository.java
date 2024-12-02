@@ -9,3 +9,4 @@ public interface ReportRepository extends JpaRepository<Report, Integer> {
 
     List<Report> findByUserid(Integer userid);
 }
+

@@ -45,7 +45,7 @@ public class ReportService {
         // Step 2: Use external API to fetch address and city details
         AddressDetails addressDetails = externalApiService.fetchAddressDetails(latitude, longitude);
         if (addressDetails == null) {
-            throw new IllegalArgumentException("Unable to fetch address details for the given coordinates.");
+            throw new IllegalArgumentException("Unable to fetch address details for the given coordinates");
         }
 
         // Step 3: Ensure CityReport exists for the fetched city

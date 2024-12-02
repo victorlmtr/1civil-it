@@ -56,3 +56,4 @@ public class LocationController {
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }
+

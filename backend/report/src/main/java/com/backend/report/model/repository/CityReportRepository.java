@@ -10,3 +10,4 @@ import java.util.Optional;
 public interface CityReportRepository extends JpaRepository<CityReport, Integer> {
     Optional<CityReport> findByCityName(String cityName);
 }
+

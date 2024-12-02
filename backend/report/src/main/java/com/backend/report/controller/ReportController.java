@@ -34,6 +34,7 @@ public class ReportController {
         List<ReportDto> reports = reportService.getAllReports();
         return ResponseEntity.ok(reports);
     }
+    
 
     // Get a Report by ID
     @GetMapping("/{id}")

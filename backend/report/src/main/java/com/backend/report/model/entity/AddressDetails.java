@@ -10,3 +10,4 @@ public class AddressDetails {
     private String inseeCode;
 }
 
+

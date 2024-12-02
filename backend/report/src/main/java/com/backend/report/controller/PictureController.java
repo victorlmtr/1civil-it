@@ -56,3 +56,4 @@ public class PictureController {
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }
+
