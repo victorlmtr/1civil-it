@@ -11,6 +11,7 @@ import org.hibernate.annotations.ColumnDefault;
 @Table(name = "picturecard")
 public class PictureCard {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ColumnDefault("nextval('picturecard_picturecardid_seq'")
     @Column(name = "picturecardid", nullable = false)
     private Integer id;
