@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class CityReportDto {
   final int? id;
@@ -45,6 +46,7 @@ class LocationDto {
   };
 }
 
+
 class PictureDto {
   final int? id;
   final String pictureUrl;
@@ -59,6 +61,7 @@ class PictureDto {
   };
 }
 
+
 class ReportTypeDto {
   final int? id;
   final String typeName;
@@ -71,32 +74,36 @@ class ReportTypeDto {
   };
 }
 
+
 class ReportDto {
   final int? id;
-  final int userId;
-  final DateTime creationDate;
+  final int userid;
+  final DateTime creationdate;
   final String comment;
-  final ReportTypeDto reportType;
-  final LocationDto location;
+  final ReportTypeDto typeid;
+  final LocationDto locationid;
   final List<PictureDto> pictures;
 
   ReportDto({
     this.id,
-    required this.userId,
-    required this.creationDate,
+    required this.userid,
+    required this.creationdate,
     required this.comment,
-    required this.reportType,
-    required this.location,
+    required this.typeid,
+    required this.locationid,
     required this.pictures,
   });
 
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'userId': userId,
-    'creationDate': creationDate.toIso8601String(),
-    'comment': comment,
-    'reportType': reportType.toJson(),
-    'location': location.toJson(),
-    'pictures': pictures.map((p) => p.toJson()).toList(),
-  };
+  Map<String, dynamic> toJson() {
+    final dateFormat = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"); // Ensure ISO 8601 format with milliseconds
+    return {
+      'id': id,
+      'userid': userid,
+      'creationdate': dateFormat.format(creationdate.toUtc()), // Format as UTC
+      'comment': comment,
+      'typeid': typeid.toJson(),
+      'locationid': locationid.toJson(),
+      'pictures': pictures.map((p) => p.toJson()).toList(),
+    };
+  }
 }
