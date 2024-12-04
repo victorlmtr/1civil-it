@@ -1,5 +1,6 @@
 package com.backend.user.controller;
 
+import com.backend.user.model.Entity.City;
 import com.backend.user.model.dto.CityDTO;
 import com.backend.user.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,11 @@ public class CityController {
     public ResponseEntity<Void> deleteCity(@PathVariable Integer id) {
         boolean deleted = cityService.deleteCity(id);
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<CityDTO> getByPostCodeAndInseeCode(@RequestParam String postCode, @RequestParam String inseeCode) {
+
+        return cityService.findByPostCodeAndInseeCode(postCode, inseeCode);
     }
 }

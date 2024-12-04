@@ -1,0 +1,9 @@
+
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é°ŒéJ$fae1ed5e-180b-4d54-9292-970a06eaf1c0
+…
+java:S6813
+"BRemove this field injection and use constructor injection instead.(êæÄŞ8ï‘«›¸2J$39955680-736a-4ddd-a4a6-e62a3c443e26
+u
+java:S6126"2Replace this String concatenation with Text block.(ø‚û8ºèª›¸2J$fd73efd0-ca92-4717-a44b-b4962bd01157
+u
+java:S6126#"2Replace this String concatenation with Text block.(ø‚û8¼èª›¸2J$80fe2c46-4735-4b62-9964-52feb0415aaf

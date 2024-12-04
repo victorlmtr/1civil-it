@@ -1,8 +1,13 @@
 package com.backend.user.service;
 
 import com.backend.user.model.Entity.Address;
+import com.backend.user.model.Entity.User;
 import com.backend.user.model.Mapper.AddressMapper;
+import com.backend.user.model.Mapper.CityMapper;
+import com.backend.user.model.Mapper.UserMapper;
 import com.backend.user.model.dto.AddressDTO;
+import com.backend.user.model.dto.CityDTO;
+import com.backend.user.model.dto.UserDTO;
 import com.backend.user.model.repository.AddressRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +27,33 @@ public class AddressService {
     @Autowired
     private AddressMapper addressMapper;
 
+    @Autowired
+    private CityService cityService;
+
+    @Autowired
+    private CityMapper cityMapper;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserMapper userMapper;
+
     // Create a new Address
     public AddressDTO createAddress(AddressDTO addressDTO) {
+
+        CityDTO cityDTO = cityService.findOrCreateCity(
+                addressDTO.getCity().getPostcode(),
+                addressDTO.getCity().getInseecode(),
+                addressDTO.getCity().getCityname()
+        );
+
         Address address = addressMapper.toEntity(addressDTO);
+
+        address.setCity(cityMapper.toEntity(cityDTO));
+
+        address.setUser(userMapper.toEntity(getDefaultUserDTO()));
+
         address = addressRepository.save(address);
         return addressMapper.toDTO(address);
     }
@@ -50,12 +79,21 @@ public class AddressService {
         });
     }
 
-    // Delete a Address by ID
+    // Delete an Address by ID
     public boolean deleteAddress(Integer id) {
         if (addressRepository.existsById(id)) {
             addressRepository.deleteById(id);
             return true;
         }
         return false;
+    }
+
+    // attribuate a default user for now
+    private UserDTO getDefaultUserDTO() {
+        Optional<UserDTO> defaultUser = userService.getUserById(1);
+
+        User user = userMapper.toEntity(defaultUser.get());
+
+        return userMapper.toDTO(user);
     }
 }

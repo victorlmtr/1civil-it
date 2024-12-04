@@ -1,13 +1,31 @@
 package com.backend.user.service;
 
+import com.backend.user.exception.AccountNotVerifiedException;
+import com.backend.user.exception.InvalidCredentialsException;
+import com.backend.user.exception.UserAlreadyExistsException;
+import com.backend.user.exception.UserNotFoundException;
+import com.backend.user.model.Entity.Role;
 import com.backend.user.model.Entity.User;
+import com.backend.user.model.Mapper.CityMapper;
 import com.backend.user.model.Mapper.UserMapper;
+import com.backend.user.model.dto.CityDTO;
 import com.backend.user.model.dto.UserDTO;
+import com.backend.user.model.repository.RoleRepository;
 import com.backend.user.model.repository.UserRepository;
+import com.backend.user.service.serviceExt.EmailNotificationService;
+import com.backend.user.security.tokenJWT.JwtTokenService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,11 +40,72 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private CityMapper cityMapper;
+
+    @Autowired
+    private CityService cityService;
+
+    @Autowired
+    private EmailNotificationService emailNotificationService;
+
+    @Autowired
+    private JwtTokenService jwtTokenService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     // Create a new User
-    public UserDTO createUser(UserDTO userDTO) {
+    public UserDTO createUser(UserDTO userDTO, String sourceApp) {
+
+        // 0. Check if the user already exists by email
+        Optional<User> existingUser = userRepository.findByEmail(userDTO.getEmail());
+        if (existingUser.isPresent()) {
+            throw new UserAlreadyExistsException(HttpStatus.CONFLICT.value());
+        }
+
+        // 1. Convert the UserDTO to a User entity
         User user = userMapper.toEntity(userDTO);
-        user = userRepository.save(user);
-        return userMapper.toDTO(user);
+
+        // 2. Hash the password before persisting
+        String passwordNoEncoded = user.getPasswordhash();
+        user.setPasswordhash(passwordEncoder.encode(passwordNoEncoded));
+
+        // 3. Set the creation date
+        user.setCreationdate(Instant.now());
+
+        // 4. Set default values for isVerified and isEnabled
+        user.setIsverified(Optional.ofNullable(user.getIsverified()).orElse(false)); // Default: not verified
+        user.setIsenabled(Optional.ofNullable(user.getIsenabled()).orElse(false));   // Default: disabled
+
+        // 5. Assign the role based on the application source
+        Role role = getRoleBasedOnAppSource(sourceApp);
+        user.setRole(role);
+
+        // 6. Find or create the city
+        CityDTO cityDTO = cityService.findOrCreateCity(userDTO.getCity().getPostcode(), userDTO.getCity().getInseecode(), userDTO.getCity().getCityname());
+        user.setCity(cityMapper.toEntity(cityDTO));
+
+        // 7. Save the user in the database
+        User createdUser = userRepository.save(user);
+
+        // 8. Generate a JWT Token
+        String token = jwtTokenService.generateToken(createdUser.getEmail());
+
+        // 9. Build verification link
+        String verificationLink = buildVerificationLink(token);
+
+        // 10. Send verification email
+        emailNotificationService.sendAccountVerificationEmail(createdUser, verificationLink);
+
+        // 11. Return the UserDTO of the created user
+        return userMapper.toDTO(createdUser);
     }
 
     // Get all Users
@@ -58,4 +137,111 @@ public class UserService {
         }
         return false;
     }
+
+
+    // Determines the user's role based on the application source (mobile or desktop)
+    private Role getRoleBasedOnAppSource(String sourceApp) {
+        int roleId = "mobile".equalsIgnoreCase(sourceApp) ? 2 : 1; // Mobile -> Citizen role, Desktop -> Admin role
+        return roleRepository.findById(roleId)
+                .orElseThrow(() -> new RuntimeException("Role not found"));
+    }
+
+
+    // Constructs the verification link for the account based on the generated JWT token
+    private String buildVerificationLink(String token) {
+        return "http://localhost:8081/api-user/auth/verify?token=" + URLEncoder.encode(token, StandardCharsets.UTF_8);
+    }
+
+
+    // Verifies the user's account by enabling the user and sending a validation email
+    public void verifyAccount(String token) {
+
+        String email = jwtTokenService.extractEmailFromToken(token);
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND.value()));
+
+        user.setIsenabled(true);
+        userRepository.save(user);
+
+        // Send validation email
+        emailNotificationService.sendAccountValidationEmail(user);
+    }
+
+
+    // Log in a user and generate a JWT token
+    public String login(UserDTO userDTO) {
+
+        // Verify credentials (if the user exists)
+        User user = userRepository.findByEmail(userDTO.getEmail())
+                .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND.value()));
+
+        // Check if the user is enabled
+        if (!user.getIsenabled()) {
+            System.out.println("Compte non activé pour l'email: " + userDTO.getEmail());
+            throw new AccountNotVerifiedException(HttpStatus.FORBIDDEN.value()); // The account is not activated
+        }
+
+        // Authenticate via AuthenticationManager
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword())
+            );
+        } catch (BadCredentialsException e) {
+            System.out.println("Bad credentials pour l'email: " + userDTO.getEmail());
+            throw new InvalidCredentialsException(HttpStatus.UNAUTHORIZED.value());
+        }
+
+        // authentication ok and user isEnabled
+        System.out.println("Authentification réussie pour l'utilisateur : " + user.getEmail());
+
+        // Generate and return the JWT token
+        return jwtTokenService.generateToken(userDTO.getEmail());
+    }
+
+
+    // Handle forgot password by sending a reset token
+    public void handleForgotPassword(String email) {
+
+        System.out.println("Email reçu : " + email);
+
+        // Check if the user exists
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND.value()));
+
+        // Generate a password reset token
+        String resetToken = jwtTokenService.generateToken(email);
+
+        // send the reset mail
+        emailNotificationService.sendPasswordResetEmail(user, resetToken);  // Utilisation du service
+    }
+
+
+    // Reset the user's password using a token and new password
+    public String resetPassword(String token, String newPassword) {
+        try {
+
+            if (!jwtTokenService.validateToken(token)) {
+                throw new RuntimeException("Token invalide ou expiré.");
+            }
+
+            // Extract the email from the token
+            String email = jwtTokenService.extractEmailFromToken(token);
+
+            // Retrieve the user by email
+            User user = userRepository.findByEmail(email)
+                    .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND.value()));
+
+            // Update the password
+            user.setPasswordhash(passwordEncoder.encode(newPassword));
+            userRepository.save(user);
+
+            return "Mot de passe réinitialisé avec succès.";
+
+        } catch (Exception e) {
+
+            throw new RuntimeException("Erreur lors de la réinitialisation du mot de passe : " + e.getMessage());
+        }
+    }
+
 }
