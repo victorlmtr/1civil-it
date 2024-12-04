@@ -121,8 +121,6 @@ Jbackend/user/src/main/java/com/backend/user/controller/UserController.java,a\2
 Kbackend/report/src/test/java/com/backend/report/ReportApplicationTests.java,6\b\6b4cab2e638a6838c6f19a253138cb0a176c25c6
 v
 Fbackend/report/src/main/java/com/backend/report/WebSecurityConfig.java,0\c\0cb94bb27419fcf9ee43440db3e7ff7733cf7b13
-y
-Ibackend/user/src/main/java/com/backend/user/config/WebSecurityConfig.java,8\8\886da400e485e35aa1c807f83390d0334db83830
 |
 Lbackend/report/src/main/java/com/backend/report/model/dto/CityReportDto.java,3\9\399633dd19e76757a4cf7bd4eba12b1be33d9c7f
 z
@@ -159,14 +157,6 @@ s
 Cbackend/user/src/test/java/com/backend/user/RoleControllerTest.java,0\d\0da0d9d04ac128dda4d999e4bc5d6b57bc99dac5
 Ü
 Vbackend/user/src/main/java/com/backend/user/service/serviceExt/EmailSenderService.java,2\f\2f7e4c11b4d81a5af65cd3dfca037309c6216c35
-x
-Hbackend/user/src/main/java/com/backend/user/security/AuthController.java,4\a\4a89d8b10ca07d05b210d8da57cd19122073b38c
-r
-Bbackend/user/src/main/java/com/backend/user/security/JwtUtils.java,4\4\441aa458f3cab014a7482e4715607f65f694d01d
-y
-Ibackend/user/src/main/java/com/backend/user/security/JwtTokenService.java,7\4\74df97127845d61b81c0c2f376f6aa8b4b59b05e
-Å
-Qbackend/user/src/main/java/com/backend/user/security/JwtAuthenticationFilter.java,1\4\14f639848c794a2909bfeb8a3dd5d41c47d5af58
 Ö
 Ubackend/user/src/main/java/com/backend/user/exception/UserAlreadyExistsException.java,8\2\8235e071b1330920ab720599ea116998259aeffa
 â
@@ -191,8 +181,6 @@ Wbackend/user/src/main/java/com/backend/user/security/authentication/AuthControl
 Zbackend/user/src/main/java/com/backend/user/security/authentication/CustomUserDetails.java,f\c\fc9010810ca67158180ee2268ce670c7c93fd6ef
 ë
 abackend/user/src/main/java/com/backend/user/security/authentication/CustomUserDetailsService.java,a\8\a8cf8653830fe72f1d04f951b71c2ba061e87237
-ã
-[backend/user/src/main/java/com/backend/user/security/authentication/UserDetailsService.java,9\5\95c0dd651972ba840bddff77dff30c0fe1e95aa7
 Ü
 Vbackend/user/src/main/java/com/backend/user/exception/InvalidCredentialsException.java,5\5\55b73fcef665ec89afef0e00b80d013992487d70
 Ä

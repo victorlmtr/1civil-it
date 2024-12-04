@@ -1,7 +1,0 @@
-
-…
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8¾·ÒÈ·2J$ed3f745f-dea7-47da-a3e4-f936014bb8db
-¢
-java:S3305"ZInject this field value directly into "securityFilterChain", the only method that uses it.(¸ñÓèüÿÿÿÿ8À·ÒÈ·2J$457b430a-f0cf-4812-be49-3ca7c41ece17
-y
-java:S1611"6Remove the parentheses around the "requests" parameter(¢ÌÀÈ8ÊïÎÈ·2J$51039f26-3147-4e64-a9e6-28b63882f0e3
