@@ -1,7 +1,11 @@
 package com.backend.user.security.authentication;
 
 import com.backend.user.model.dto.UserDTO;
+import com.backend.user.security.tokenJWT.JwtTokenService;
+import com.backend.user.security.tokenJWT.TokenBlacklist;
 import com.backend.user.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,11 +16,14 @@ import java.util.Map;
 public class AuthController {
 
     private final UserService userService;
+    private final JwtTokenService jwtTokenService;
 
     public AuthController(
-            UserService userService) {
+            UserService userService,
+            JwtTokenService jwtTokenService) {
 
         this.userService = userService;
+        this.jwtTokenService = jwtTokenService;
     }
 
 
@@ -88,4 +95,31 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Erreur : " + e.getMessage());
         }
     }
+
+
+    // endpoint for deconnect user
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request) {
+
+        try {
+            // extract token from request
+            String token = jwtTokenService.extractToken(request);
+
+            if (token == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token manquant");
+            }
+
+            // add token to userService
+            userService.logout(token);
+
+            return ResponseEntity.ok("Déconnexion réussie");
+
+        } catch (Exception e) {
+
+            // handle exceptions and errors
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de la déconnexion : " + e.getMessage());
+        }
+    }
+
+
 }

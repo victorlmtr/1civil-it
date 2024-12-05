@@ -19,14 +19,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenService jwtTokenService;
 
+    @Autowired
+    private TokenBlacklist tokenBlacklist;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         // Get the JWT token from the Authorization header
         String token = extractToken(request);
 
-        // If the token is valid, add it to the security context
-        if (token != null && jwtTokenService.validateToken(token)) {
+        // If the token is valid, add it to the security context and verify token is not blacklisted
+        if (token != null && jwtTokenService.validateToken(token) && !tokenBlacklist.contains(token)) {
 
             String username = jwtTokenService.extractEmailFromToken(token);
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username, null, null);
@@ -38,6 +41,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+    // extract token from header request
     private String extractToken(HttpServletRequest request) {
 
         String header = request.getHeader("Authorization");
