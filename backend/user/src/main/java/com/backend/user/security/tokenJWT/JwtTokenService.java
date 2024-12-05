@@ -1,6 +1,7 @@
 package com.backend.user.security.tokenJWT;
 
 import io.jsonwebtoken.*;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -56,6 +57,15 @@ public class JwtTokenService {
         }
     }
 
+    public String extractToken(HttpServletRequest request) {
 
+        String header = request.getHeader("Authorization");
+
+        if (header != null && header.startsWith("Bearer ")) {
+            return header.substring(7);
+        }
+
+        return null;
+    }
 
 }

@@ -185,3 +185,5 @@ abackend/user/src/main/java/com/backend/user/security/authentication/CustomUserD
 Vbackend/user/src/main/java/com/backend/user/exception/InvalidCredentialsException.java,5\5\55b73fcef665ec89afef0e00b80d013992487d70
 Ä
 Pbackend/user/src/main/java/com/backend/user/exception/UserNotFoundException.java,b\a\ba6c627b32ab06ca836b3a3d9c5574b85370280d
+Å
+Qbackend/user/src/main/java/com/backend/user/security/tokenJWT/TokenBlacklist.java,2\e\2ec91836e4743b5d9ec60c238633aa4cf4e0bb46
