@@ -187,3 +187,7 @@ Vbackend/user/src/main/java/com/backend/user/exception/InvalidCredentialsExcepti
 Pbackend/user/src/main/java/com/backend/user/exception/UserNotFoundException.java,b\a\ba6c627b32ab06ca836b3a3d9c5574b85370280d
 Å
 Qbackend/user/src/main/java/com/backend/user/security/tokenJWT/TokenBlacklist.java,2\e\2ec91836e4743b5d9ec60c238633aa4cf4e0bb46
+]
+-frontend-dashboard/src/app/app.component.html,b\a\ba17ffb6cf5c1b582721a4e435a2cb1b0fc00dc3
+L
+frontend-dashboard/README.md,1\e\1ec49c81705dff5528f494f2c1ce6e5a7e5ffe5f
