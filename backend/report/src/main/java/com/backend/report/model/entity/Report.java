@@ -22,7 +22,7 @@ public class Report {
     @Column(name = "userid", nullable = false)
     private Integer userid;
 
-    @Column(name = "creationdate", nullable = false)
+    @Column(name = "creationdate")
     private Instant creationdate;
 
     @Column(name = "comment", length = Integer.MAX_VALUE)
@@ -36,7 +36,6 @@ public class Report {
     @JoinColumn(name = "locationid", nullable = false)
     private Location locationid;
 
-    @OneToMany(mappedBy = "reportid")
+    @OneToMany(mappedBy = "reportid", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Picture> pictures = new LinkedHashSet<>();
-
 }

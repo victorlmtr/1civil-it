@@ -34,6 +34,7 @@ public class ReportController {
         List<ReportDto> reports = reportService.getAllReports();
         return ResponseEntity.ok(reports);
     }
+    
 
     // Get a Report by ID
     @GetMapping("/{id}")
@@ -55,4 +56,15 @@ public class ReportController {
         boolean deleted = reportService.deleteReport(id);
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
+
+    // Get Reports by User ID
+    @GetMapping("/user/{userid}")
+    public ResponseEntity<List<ReportDto>> getReportsByUserId(@PathVariable Integer userid) {
+        List<ReportDto> reports = reportService.getReportsByUserId(userid);
+        if (reports.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(reports);
+    }
+
 }

@@ -12,8 +12,10 @@ import com.backend.user.model.dto.CityDTO;
 import com.backend.user.model.dto.UserDTO;
 import com.backend.user.model.repository.RoleRepository;
 import com.backend.user.model.repository.UserRepository;
+import com.backend.user.security.tokenJWT.TokenBlacklist;
 import com.backend.user.service.serviceExt.EmailNotificationService;
 import com.backend.user.security.tokenJWT.JwtTokenService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,6 +62,10 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private TokenBlacklist tokenBlacklist;
+
 
     // Create a new User
     public UserDTO createUser(UserDTO userDTO, String sourceApp) {
@@ -242,6 +248,19 @@ public class UserService {
 
             throw new RuntimeException("Erreur lors de la réinitialisation du mot de passe : " + e.getMessage());
         }
+    }
+
+
+    // Deconnect user and add token to a blacklist
+    public void logout(String token) throws IllegalArgumentException {
+
+        if (token == null) {
+
+            throw new IllegalArgumentException("Token manquant");
+        }
+
+        // Add token to blacklist
+        tokenBlacklist.add(token);
     }
 
 }

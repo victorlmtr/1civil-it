@@ -55,4 +55,5 @@ public class CityReportController {
         boolean deleted = cityReportService.deleteCityReport(id);
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
+
 }

@@ -1,9 +1,31 @@
 
-h	java:S112á"FDefine and throw a dedicated exception instead of using a generic one.(Š®’Ìûÿÿÿÿ8†¸ý´¹2
-c	java:S112ó"FDefine and throw a dedicated exception instead of using a generic one.(–†¸¼8‡¸ý´¹2
-K
-java:S5411´"(Use a primitive boolean expression here.(‚²ûÇùÿÿÿÿ8‘¸ý´¹2
-M	java:S106µ"+Replace this use of System.out by a logger.(¢´²Óÿÿÿÿÿ8 ¹ý´¹2
-M	java:S106¿"+Replace this use of System.out by a logger.(åÉ¥³ÿÿÿÿÿ8§¹ý´¹2
-M	java:S106Ä"+Replace this use of System.out by a logger.(÷˜ÕÄûÿÿÿÿ8«¹ý´¹2
-H	java:S106Î"+Replace this use of System.out by a logger.(©Ô¹ë8°¹ý´¹2
+Ž	java:S112ç"FDefine and throw a dedicated exception instead of using a generic one.(Š®’Ìûÿÿÿÿ8²Õþ³¹2J$d606be48-e02e-4082-a7fd-4e1570d6eadb
+‰	java:S112ù"FDefine and throw a dedicated exception instead of using a generic one.(–†¸¼8³Õþ³¹2J$77f812e2-5486-4f2d-95de-8318b5f19033
+q
+java:S5411º"(Use a primitive boolean expression here.(‚²ûÇùÿÿÿÿ8¶Õþ³¹2J$2344c9c3-d9fd-42be-9a02-45757f0666a9
+…
+java:S6813'"BRemove this field injection and use constructor injection instead.(êæÄÞ8ëÕþ³¹2J$0060e293-8363-4c0b-a44a-f79b1641a226
+…
+java:S6813*"BRemove this field injection and use constructor injection instead.(êæÄÞ8ëÕþ³¹2J$a9f16374-6036-4f89-9128-8126b5af9005
+…
+java:S6813-"BRemove this field injection and use constructor injection instead.(êæÄÞ8ëÕþ³¹2J$446a47bd-c065-4212-a6ed-1c616687e897
+…
+java:S68130"BRemove this field injection and use constructor injection instead.(êæÄÞ8ëÕþ³¹2J$2b262f8a-3613-4764-a7b1-bfd6791cb7ba
+…
+java:S68133"BRemove this field injection and use constructor injection instead.(êæÄÞ8ëÕþ³¹2J$c878a7e7-b8a3-413b-a00b-b050e1829583
+…
+java:S68136"BRemove this field injection and use constructor injection instead.(êæÄÞ8ëÕþ³¹2J$67b670d8-d4f9-44f9-a255-034629ad898d
+…
+java:S68139"BRemove this field injection and use constructor injection instead.(êæÄÞ8ìÕþ³¹2J$d8f35490-b857-4616-8151-3c036a0b1617
+…
+java:S6813<"BRemove this field injection and use constructor injection instead.(êæÄÞ8ìÕþ³¹2J$7ee5b9ce-03b6-44ff-ad9b-11f4484efd42
+…
+java:S6813?"BRemove this field injection and use constructor injection instead.(êæÄÞ8ìÕþ³¹2J$d992a569-e759-4756-a6c7-ca75311f5438
+…
+java:S6813B"BRemove this field injection and use constructor injection instead.(êæÄÞ8ìÕþ³¹2J$bd878387-7b3c-4a8f-94df-49707d637724
+½
+java:S6204y"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹8÷Õþ³¹2J$c94eba3f-ea50-4e6e-a14e-1251e84f7519
+s	java:S106»"+Replace this use of System.out by a logger.(¢´²Óÿÿÿÿÿ8Öþ³¹2J$24b82d4b-46af-499a-8d0d-3ea2e63b5bba
+s	java:S106Å"+Replace this use of System.out by a logger.(åÉ¥³ÿÿÿÿÿ8ƒÖþ³¹2J$bd5c0304-df4b-48ec-9e9d-c3ae760fb721
+s	java:S106Ê"+Replace this use of System.out by a logger.(÷˜ÕÄûÿÿÿÿ8„Öþ³¹2J$9ae8dd1e-1f89-4135-95c2-c6ac1074ca01
+n	java:S106Ô"+Replace this use of System.out by a logger.(©Ô¹ë8…Öþ³¹2J$aecc066e-c6e2-4e94-a388-9fa4ee6c0445

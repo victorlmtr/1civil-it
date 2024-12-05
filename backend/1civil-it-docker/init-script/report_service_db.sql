@@ -114,9 +114,9 @@ INSERT INTO public.report (userid, creationdate, comment, typeid, locationid) VA
 ------------------------------------------------------------
 -- Insert into picture after report data is added
 INSERT INTO public.picture (pictureurl, data, reportid) VALUES
-                                                            ('https://images.victorl.xyz/stationnement1.jpg', NULL, 1),
-                                                            ('https://images.victorl.xyz/stationnement2.jpg', NULL, 2),
-                                                            ('https://images.victorl.xyz/stationnement3.jpg', NULL, 3);
+                                                            ('https://images.victorl.xyz/uploads/stationnement1.jpg', NULL, 1),
+                                                            ('https://images.victorl.xyz/uploads/stationnement2.jpg', NULL, 2),
+                                                            ('https://images.victorl.xyz/uploads/stationnement3.jpg', NULL, 3);
 
 ------------------------------------------------------------
 -- Réinitialisation des séquences
