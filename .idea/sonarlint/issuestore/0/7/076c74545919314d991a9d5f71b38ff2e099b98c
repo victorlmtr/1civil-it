@@ -1,3 +1,9 @@
 
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‹êã¿¹2J$c238c93f-2be8-48be-b757-892af596ed02
+¢
+java:S3305"ZInject this field value directly into "securityFilterChain", the only method that uses it.(¸ñÓèüÿÿÿÿ8êã¿¹2J$046f6b8d-a44b-467b-8ad1-1a1d2f38bcbf
 y
-java:S1611 "6Remove the parentheses around the "requests" parameter(¢ÌÀÈ8ÊïÎÈ·2J$0f8ca823-2ab6-4b91-80bc-95112754ff76
+java:S1611&"6Remove the parentheses around the "requests" parameter(¢ÌÀÈ8™êã¿¹2J$5b201352-f3f9-442d-bd86-25658a7a85c5
+£
+java:S1128"[Remove this unused import 'org.springframework.web.servlet.config.annotation.CorsRegistry'.(âÁ’©şÿÿÿÿ8‰é—Á¹2J$121d45a0-4b8b-458a-8b1b-22db814a19a9

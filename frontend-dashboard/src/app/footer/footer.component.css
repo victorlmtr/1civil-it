@@ -1,0 +1,14 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.footer a {
+  color: #FFD700;
+}
+.footer a:hover {
+  text-decoration: none;
+}
