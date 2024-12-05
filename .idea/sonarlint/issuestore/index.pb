@@ -191,3 +191,7 @@ Qbackend/user/src/main/java/com/backend/user/security/tokenJWT/TokenBlacklist.ja
 -frontend-dashboard/src/app/app.component.html,b\a\ba17ffb6cf5c1b582721a4e435a2cb1b0fc00dc3
 L
 frontend-dashboard/README.md,1\e\1ec49c81705dff5528f494f2c1ce6e5a7e5ffe5f
+M
+frontend-dashboard/.gitignore,d\d\ddb4f96d803974def7b7410e10cba9b10f8617ef
+O
+frontend-dashboard/angular.json,f\f\ff2f1679a1b1d346288d593a30efa2c0a23cb22c
