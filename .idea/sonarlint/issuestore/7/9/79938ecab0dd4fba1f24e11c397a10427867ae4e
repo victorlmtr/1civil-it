@@ -1,29 +1,9 @@
 
-	java:S112á"FDefine and throw a dedicated exception instead of using a generic one.(Š®’Ìûÿÿÿÿ8¾ëèÇ¸2J$3d85de52-704a-4391-ac87-03ce6927298d
-‰	java:S112ó"FDefine and throw a dedicated exception instead of using a generic one.(–†¸¼8¿ëèÇ¸2J$d7db030e-e415-44af-9295-1f9b4910b22c
-q
-java:S5411´"(Use a primitive boolean expression here.(‚²ûÇùÿÿÿÿ8û‰¹È¸2J$12fc87a8-7393-4e66-86cf-2ef55456cc2c
-…
-java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÙëèÇ¸2J$2537494a-2f5c-43ca-9c88-972d665d66dc
-…
-java:S6813("BRemove this field injection and use constructor injection instead.(êæÄŞ8ÙëèÇ¸2J$921e4579-01e7-4809-b7b6-ab9b1a6b354f
-…
-java:S6813+"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÙëèÇ¸2J$88dc73a4-ac59-4684-a944-aa2c3e1150af
-…
-java:S6813."BRemove this field injection and use constructor injection instead.(êæÄŞ8ÙëèÇ¸2J$d24e6069-1823-4c58-9048-0edfdf4757e7
-…
-java:S68131"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÙëèÇ¸2J$4373eab1-a81e-4a3e-ab90-2957c1ea88e6
-…
-java:S68134"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÙëèÇ¸2J$bd2ba28f-b054-493f-8ae8-ca951d8a8935
-…
-java:S68137"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÙëèÇ¸2J$05c9aa38-3aea-4255-9f0b-4515335d4281
-…
-java:S6813:"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÙëèÇ¸2J$5818d9c2-e3eb-4767-80bd-747b2553a3fe
-…
-java:S6813="BRemove this field injection and use constructor injection instead.(êæÄŞ8ÙëèÇ¸2J$1d7e69a4-a3f4-47cc-b6a2-f072a8548664
-½
-java:S6204s"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹8ãëèÇ¸2J$b34a52e1-ad64-46c2-8b8e-78f699f421be
-s	java:S106µ"+Replace this use of System.out by a logger.(¢´²Óÿÿÿÿÿ8ñëèÇ¸2J$9d5f82c7-8684-4ec6-9b3a-494f73d1d55c
-s	java:S106¿"+Replace this use of System.out by a logger.(åÉ¥³ÿÿÿÿÿ8ÔŠÈ¸2J$51021dfa-e391-4af5-8c7b-5d73790dd565
-s	java:S106Ä"+Replace this use of System.out by a logger.(÷˜ÕÄûÿÿÿÿ8Í€‹È¸2J$8479ee18-a9d3-44c0-96b0-7af95b156100
-n	java:S106Î"+Replace this use of System.out by a logger.(©Ô¹ë8¶ È¸2J$6dd7ce64-6563-4650-8787-71923951db24
+h	java:S112á"FDefine and throw a dedicated exception instead of using a generic one.(Š®’Ìûÿÿÿÿ8†¸ı´¹2
+c	java:S112ó"FDefine and throw a dedicated exception instead of using a generic one.(–†¸¼8‡¸ı´¹2
+K
+java:S5411´"(Use a primitive boolean expression here.(‚²ûÇùÿÿÿÿ8‘¸ı´¹2
+M	java:S106µ"+Replace this use of System.out by a logger.(¢´²Óÿÿÿÿÿ8 ¹ı´¹2
+M	java:S106¿"+Replace this use of System.out by a logger.(åÉ¥³ÿÿÿÿÿ8§¹ı´¹2
+M	java:S106Ä"+Replace this use of System.out by a logger.(÷˜ÕÄûÿÿÿÿ8«¹ı´¹2
+H	java:S106Î"+Replace this use of System.out by a logger.(©Ô¹ë8°¹ı´¹2

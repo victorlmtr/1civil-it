@@ -185,3 +185,7 @@ abackend/user/src/main/java/com/backend/user/security/authentication/CustomUserD
 Vbackend/user/src/main/java/com/backend/user/exception/InvalidCredentialsException.java,5\5\55b73fcef665ec89afef0e00b80d013992487d70
 €
 Pbackend/user/src/main/java/com/backend/user/exception/UserNotFoundException.java,b\a\ba6c627b32ab06ca836b3a3d9c5574b85370280d
+L
+frontend-dashboard/README.md,1\e\1ec49c81705dff5528f494f2c1ce6e5a7e5ffe5f
+]
+-frontend-dashboard/src/app/app.component.html,b\a\ba17ffb6cf5c1b582721a4e435a2cb1b0fc00dc3
