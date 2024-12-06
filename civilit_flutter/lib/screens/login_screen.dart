@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
       _errorMessage = null;
     });
 
-    final url = Uri.parse('http://192.168.1.21:8081/api-user/auth/login');
+    final url = Uri.parse('http://192.168.1.21:8081/api-user/auth/login?includeUserId=true');
     final headers = {
       'Content-Type': 'application/json',
     };
@@ -51,20 +51,32 @@ class _LoginScreenState extends State<LoginScreen> {
       });
 
       if (response.statusCode == 200) {
-        final token = response.body.trim();
+        // Parse the response body as JSON
+        final responseData = json.decode(response.body);
 
-        // Save token to secure storage
-        await _storageService.saveToken(token);
+        // Extract token and userId from the response
+        final token = responseData['token'] ?? '';
+        final userId = responseData['userId'];
 
-        debugPrint('Login successful. Token saved.');
+        if (token.isNotEmpty && userId != null) {
+          // Save token and userId to secure storage
+          await _storageService.saveToken(token);
+          await _storageService.saveUserId(userId.toString()); // Store as string
 
-        // Navigate to HomeScreen
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const HomeScreen(),
-          ),
-        );
+          debugPrint('Login successful. Token and userId saved.');
+
+          // Navigate to HomeScreen
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeScreen(),
+            ),
+          );
+        } else {
+          setState(() {
+            _errorMessage = 'Unexpected response format.';
+          });
+        }
       } else if (response.statusCode == 401) {
         debugPrint('Invalid email or password.');
         setState(() {
@@ -84,6 +96,8 @@ class _LoginScreenState extends State<LoginScreen> {
       });
     }
   }
+
+
 
 
 

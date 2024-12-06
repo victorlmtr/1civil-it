@@ -4,9 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
+import '../api/SecureStorageService.dart';
 import '../models/report_dto.dart';
 
+final SecureStorageService _storageService = SecureStorageService();
+
 Future<void> createReport(BuildContext context) async {
+  // Retrieve the userId from secure storage
+  final userId = await _storageService.getUserId();
+  if (userId == null) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('User not logged in.')),
+    );
+    return;
+  }
+
   final image = await _captureImage();
   if (image == null) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -64,13 +76,13 @@ Future<void> createReport(BuildContext context) async {
   // Construct report type object
   final reportType = ReportTypeDto(
     id: 1,
-    typeName: "Stationnement interdit",
+    typename: "Stationnement interdit",
   );
 
   // Create the full report object
   final report = ReportDto(
     id: reportId,
-    userid: 1, // Use dynamic user ID if available
+    userid: int.parse(userId), // Use the retrieved userId
     creationdate: DateTime.now(),
     comment: "test",
     typeid: reportType,
@@ -81,6 +93,7 @@ Future<void> createReport(BuildContext context) async {
   // Send the report to the backend
   await _sendReportToBackend(report, context);
 }
+
 
 Future<void> _sendReportToBackend(ReportDto report, BuildContext context) async {
   const apiUrl = 'http://192.168.1.21:8082/api/reports/reports'; // Backend API endpoint
