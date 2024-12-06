@@ -57,7 +57,7 @@ Future<void> createReport(BuildContext context) async {
   // Construct picture object
   final picture = PictureDto(
     id: reportId,
-    pictureUrl: pictureUrl,
+    pictureurl: pictureUrl,
     data: "test",
   );
 

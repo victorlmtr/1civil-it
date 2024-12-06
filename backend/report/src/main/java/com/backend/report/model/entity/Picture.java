@@ -15,7 +15,7 @@ public class Picture {
     @Column(name = "pictureid", nullable = false)
     private Integer id;
 
-    @Column(name = "pictureurl", nullable = false, length = 100)
+    @Column(name = "pictureurl", nullable = false, length = 150)
     private String pictureurl;
 
     @Column(name = "data", length = Integer.MAX_VALUE)

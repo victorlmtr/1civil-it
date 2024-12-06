@@ -49,17 +49,18 @@ class LocationDto {
 
 class PictureDto {
   final int? id;
-  final String pictureUrl;
+  final String pictureurl;
   final String data;
 
-  PictureDto({this.id, required this.pictureUrl, required this.data});
+  PictureDto({this.id, required this.pictureurl, required this.data});
 
   Map<String, dynamic> toJson() => {
     'id': id,
-    'pictureUrl': pictureUrl,
+    'pictureurl': pictureurl, // Updated here as well
     'data': data,
   };
 }
+
 
 
 class ReportTypeDto {
