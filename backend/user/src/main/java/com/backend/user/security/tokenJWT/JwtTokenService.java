@@ -21,7 +21,6 @@ public class JwtTokenService {
         SecretKey key = JwtUtils.getSecretKey(secretKey);
 
         Date expirationDate = new Date(System.currentTimeMillis() + EXPIRATION_TIME);
-        System.out.println("Expiration: " + expirationDate);
 
         return Jwts.builder()
                 .setSubject(email) // Identifies the user
@@ -67,5 +66,6 @@ public class JwtTokenService {
 
         return null;
     }
+
 
 }

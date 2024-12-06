@@ -235,3 +235,7 @@ h
 8frontend-dashboard/src/app/login/login.component.spec.ts,b\3\b329b6cc6a1ea88eb0d3a4d993246a1da3c82bba
 ƒ
 Sbackend/user/src/main/java/com/backend/user/exception/InvalidPasswordException.java,0\a\0a355dcb9e4eef15c2fdf1ebba8f1c1e59592e77
+d
+4frontend-dashboard/src/app/login/login.component.css,8\f\8fa8bddcba1cc9ee1c309f3727ea1475eb42268c
+\
+,frontend-dashboard/src/app/app.component.css,0\2\0274c2fa010e633f9ef284da747c22f6f86b6795

@@ -1,0 +1,47 @@
+/* Styles généraux */
+.welcome-text {
+  color: #4682B4;
+  font-weight: bold;
+}
+
+.subtext {
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+.custom-card {
+  width: 360px;
+  border: 1px solid #e0e0e0;
+}
+
+.custom-title {
+  color: #4682B4;
+}
+
+.custom-label {
+  color: #2F4F4F;
+}
+
+.custom-button {
+  background-color: #4682B4;
+  color: white;
+}
+
+.custom-link {
+  font-size: 0.9rem;
+}
+
+/* Styles supplémentaires pour la validation */
+.text-danger {
+  font-size: 0.875rem;
+}
+
+/* Modal */
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.btn-close {
+  color: #000;
+}

@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8081/api-user/auth/login';
+  private apiUrl = 'http://localhost:8081/api-user/auth';
 
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<any> {
     const body = { email, password };
-    return this.http.post<any>(`${this.apiUrl}`, body, { responseType: 'text' as 'json' });
+    return this.http.post<any>(`${this.apiUrl}/login`, body, { responseType: 'text' as 'json' });
   }
 
   saveToken(token: string): void {
@@ -30,5 +30,11 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('authToken');
+  }
+
+  // Réinitialisation du mot de passe
+  forgotPassword(email: string): Observable<any> {
+    const payload = { email };
+    return this.http.post<any>(`${this.apiUrl}/forgot-password`, payload);
   }
 }

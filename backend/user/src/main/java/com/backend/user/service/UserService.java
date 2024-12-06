@@ -274,4 +274,17 @@ public class UserService {
         tokenBlacklist.add(token);
     }
 
+
+    public int getUserIdFromToken(String token) {
+        // extract mail from token
+        String email = jwtTokenService.extractEmailFromToken(token);
+
+        // find user in db
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND.value()));
+
+        // return user id
+        return user.getId();
+    }
+
 }

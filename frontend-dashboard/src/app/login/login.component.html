@@ -1,30 +1,110 @@
-<div class="d-flex flex-column align-items-center justify-content-center min-vh-100" style="background-color: #F8F8FF;">
+<div class="background-container">
+<div class="d-flex flex-column align-items-center justify-content-center min-vh-100">
   <div class="text-center mb-4">
-    <h2 style="color: #4682B4; font-weight: bold;">Bienvenue sur 1Civil-it !</h2>
-    <p class="text-muted" style="font-size: 1rem;">Veuillez vous connecter à votre espace afin de pouvoir consulter les signalements effectués par les utilisateurs de l'application.</p>
+    <h2 class="welcome-text">Bienvenue sur 1Civil-it !</h2>
+    <p class="subtext">Veuillez vous connecter à votre espace afin de pouvoir consulter les signalements effectués par les utilisateurs de l'application.</p>
   </div>
 
-  <div class="card shadow-sm p-4" style="width: 360px; border: 1px solid #e0e0e0;">
-    <h4 class="text-center mb-4 fw-bold" style="color: #4682B4;">Se connecter</h4>
+  <div class="card shadow-sm p-4 custom-card">
+    <h4 class="text-center mb-4 fw-bold custom-title">Se connecter</h4>
 
     <!-- Affichage du message d'erreur -->
     <div *ngIf="errorMessage" class="alert alert-danger">
       {{ errorMessage }}
     </div>
 
+    <!-- confirmation d'envoi du mail de réinitialisation du mdp -->
+    <div id="successAlert" class="alert alert-success d-none" role="alert">
+      Un e-mail de réinitialisation a été envoyé.
+    </div>
+
     <!-- Formulaire de connexion -->
-    <form (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
       <div class="mb-3">
-        <label for="email" class="form-label" style="color: #2F4F4F;">Adresse e-mail</label>
-        <input type="email" id="email" class="form-control" [(ngModel)]="email" name="email" placeholder="Entrez votre e-mail" required>
+        <label for="email" class="form-label custom-label">Adresse e-mail</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="Entrez votre e-mail"
+          required
+          email
+          #emailInput="ngModel">
+        <div *ngIf="emailInput.invalid && emailInput.touched" class="text-danger">
+          Veuillez entrer une adresse e-mail valide.
+        </div>
       </div>
 
       <div class="mb-3">
-        <label for="password" class="form-label" style="color: #2F4F4F;">Mot de passe</label>
-        <input type="password" id="password" class="form-control" [(ngModel)]="password" name="password" placeholder="Entrez votre mot de passe" required>
+        <label for="password" class="form-label custom-label">Mot de passe</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Entrez votre mot de passe"
+          required
+          #passwordInput="ngModel">
+        <div *ngIf="passwordInput.invalid && passwordInput.touched" class="text-danger">
+          Le mot de passe est obligatoire.
+        </div>
       </div>
 
-      <button type="submit" class="btn w-100" style="background-color: #4682B4; color: white;">Se connecter</button>
+      <button
+        type="submit"
+        class="btn w-100 mb-2 custom-button"
+        [disabled]="loginForm.invalid">
+        Se connecter
+      </button>
     </form>
+
+    <!-- Lien pour réinitialisation -->
+    <div class="text-center">
+      <a
+        href="javascript:void(0);"
+        (click)="openForgotPasswordModal()"
+        class="text-muted custom-link">
+        Mot de passe oublié ?
+      </a>
+    </div>
   </div>
 </div>
+</div>
+
+  <!-- Modal pour réinitialisation du mot de passe -->
+  <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="forgotPasswordModalLabel">Réinitialisation du mot de passe</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="onForgotPasswordSubmit()" #forgotPasswordForm="ngForm">
+            <div class="mb-3">
+              <label for="forgotEmail" class="form-label">Adresse e-mail</label>
+              <input
+                type="email"
+                id="forgotEmail"
+                class="form-control"
+                [(ngModel)]="forgotEmail"
+                name="forgotEmail"
+                placeholder="Entrez votre adresse e-mail"
+                required
+                email
+                #forgotEmailInput="ngModel">
+              <div *ngIf="forgotEmailInput.invalid && forgotEmailInput.touched" class="text-danger">
+                Veuillez entrer une adresse e-mail valide.
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100" [disabled]="forgotPasswordForm.invalid">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

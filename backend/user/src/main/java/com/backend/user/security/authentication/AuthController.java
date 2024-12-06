@@ -122,4 +122,18 @@ public class AuthController {
     }
 
 
+    @GetMapping("/current-user-id")
+    public ResponseEntity<Integer> getCurrentUserId(@RequestHeader("Authorization") String authorizationHeader) {
+
+        // extract token from header autorization
+        String token = authorizationHeader.replace("Bearer ", "");
+
+        // get user id from token
+        int userId = userService.getUserIdFromToken(token);
+
+        // return id
+        return ResponseEntity.ok(userId);
+    }
+
+
 }

@@ -1,14 +1,36 @@
+/* Styles du footer */
 .footer {
-  position: fixed;
+  background-color: #2F4F4F;
+  color: white;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 1rem;
+  width: 100%;
+  position: relative; /* Par défaut, pas fixe */
+  z-index: 10;
+}
+
+/* Forcer le footer à rester en bas de page */
+.footer.fixed-bottom {
+  position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  text-align: center;
-  font-size: 0.9rem;
 }
-.footer a {
-  color: #FFD700;
+
+/* Gestion de la page complète */
+html, body {
+  height: 100%; /* Assure que le body remplit toute la hauteur de la page */
+  margin: 0;
 }
-.footer a:hover {
-  text-decoration: none;
+
+body {
+  display: flex;
+  flex-direction: column; /* Permet de disposer le contenu en colonnes (header, main, footer) */
+  min-height: 100vh; /* Assure que le body occupe toute la hauteur de la fenêtre */
+}
+
+/* La section principale prend toute la place restante */
+main {
+  flex: 1; /* Prend tout l'espace vertical restant */
 }
