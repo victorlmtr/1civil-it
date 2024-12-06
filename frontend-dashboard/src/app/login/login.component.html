@@ -1,0 +1,30 @@
+<div class="d-flex flex-column align-items-center justify-content-center min-vh-100" style="background-color: #F8F8FF;">
+  <div class="text-center mb-4">
+    <h2 style="color: #4682B4; font-weight: bold;">Bienvenue sur 1Civil-it !</h2>
+    <p class="text-muted" style="font-size: 1rem;">Veuillez vous connecter à votre espace afin de pouvoir consulter les signalements effectués par les utilisateurs de l'application.</p>
+  </div>
+
+  <div class="card shadow-sm p-4" style="width: 360px; border: 1px solid #e0e0e0;">
+    <h4 class="text-center mb-4 fw-bold" style="color: #4682B4;">Se connecter</h4>
+
+    <!-- Affichage du message d'erreur -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Formulaire de connexion -->
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="email" class="form-label" style="color: #2F4F4F;">Adresse e-mail</label>
+        <input type="email" id="email" class="form-control" [(ngModel)]="email" name="email" placeholder="Entrez votre e-mail" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label" style="color: #2F4F4F;">Mot de passe</label>
+        <input type="password" id="password" class="form-control" [(ngModel)]="password" name="password" placeholder="Entrez votre mot de passe" required>
+      </div>
+
+      <button type="submit" class="btn w-100" style="background-color: #4682B4; color: white;">Se connecter</button>
+    </form>
+  </div>
+</div>

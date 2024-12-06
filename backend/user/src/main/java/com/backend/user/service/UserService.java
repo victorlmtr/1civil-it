@@ -1,9 +1,6 @@
 package com.backend.user.service;
 
-import com.backend.user.exception.AccountNotVerifiedException;
-import com.backend.user.exception.InvalidCredentialsException;
-import com.backend.user.exception.UserAlreadyExistsException;
-import com.backend.user.exception.UserNotFoundException;
+import com.backend.user.exception.*;
 import com.backend.user.model.Entity.Role;
 import com.backend.user.model.Entity.User;
 import com.backend.user.model.Mapper.CityMapper;
@@ -76,41 +73,46 @@ public class UserService {
             throw new UserAlreadyExistsException(HttpStatus.CONFLICT.value());
         }
 
-        // 1. Convert the UserDTO to a User entity
+        // 1. Check the password strength
+        if (!isPasswordStrong(userDTO.getPassword())) {
+            throw new InvalidPasswordException(HttpStatus.BAD_REQUEST.value());
+        }
+
+        // 2. Convert the UserDTO to a User entity
         User user = userMapper.toEntity(userDTO);
 
-        // 2. Hash the password before persisting
+        // 3. Hash the password before persisting
         String passwordNoEncoded = user.getPasswordhash();
         user.setPasswordhash(passwordEncoder.encode(passwordNoEncoded));
 
-        // 3. Set the creation date
+        // 4. Set the creation date
         user.setCreationdate(Instant.now());
 
-        // 4. Set default values for isVerified and isEnabled
+        // 5. Set default values for isVerified and isEnabled
         user.setIsverified(Optional.ofNullable(user.getIsverified()).orElse(false)); // Default: not verified
         user.setIsenabled(Optional.ofNullable(user.getIsenabled()).orElse(false));   // Default: disabled
 
-        // 5. Assign the role based on the application source
+        // 6. Assign the role based on the application source
         Role role = getRoleBasedOnAppSource(sourceApp);
         user.setRole(role);
 
-        // 6. Find or create the city
+        // 7. Find or create the city
         CityDTO cityDTO = cityService.findOrCreateCity(userDTO.getCity().getPostcode(), userDTO.getCity().getInseecode(), userDTO.getCity().getCityname());
         user.setCity(cityMapper.toEntity(cityDTO));
 
-        // 7. Save the user in the database
+        // 8. Save the user in the database
         User createdUser = userRepository.save(user);
 
-        // 8. Generate a JWT Token
+        // 9. Generate a JWT Token
         String token = jwtTokenService.generateToken(createdUser.getEmail());
 
-        // 9. Build verification link
+        // 10. Build verification link
         String verificationLink = buildVerificationLink(token);
 
-        // 10. Send verification email
+        // 11. Send verification email
         emailNotificationService.sendAccountVerificationEmail(createdUser, verificationLink);
 
-        // 11. Return the UserDTO of the created user
+        // 12. Return the UserDTO of the created user
         return userMapper.toDTO(createdUser);
     }
 
@@ -142,6 +144,15 @@ public class UserService {
             return true;
         }
         return false;
+    }
+
+
+    // check the password strength
+    private boolean isPasswordStrong(String password) {
+
+        String regex = "^(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,}$";
+
+        return password.matches(regex);
     }
 
 
