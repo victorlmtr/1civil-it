@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, Observable, throwError} from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,14 @@ export class AuthService {
 
   login(email: string, password: string): Observable<any> {
     const body = { email, password };
-    return this.http.post<any>(`${this.apiUrl}/login`, body, { responseType: 'text' as 'json' });
+    const headers = new HttpHeaders({
+      'X-Client-Type': 'desktop', // Header spécifique pour identifier l'application desktop
+    });
+
+    return this.http.post<any>(`${this.apiUrl}/login-desktop`, body, {
+      headers,
+      responseType: 'text' as 'json',
+    });
   }
 
   saveToken(token: string): void {

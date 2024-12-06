@@ -58,6 +58,14 @@ public class AuthController {
         return ResponseEntity.ok(token);
     }
 
+    @PostMapping("/login-desktop")
+    public ResponseEntity<String> loginDesktop(@RequestBody UserDTO userDTO) {
+
+        // Appel à la méthode de login avec la vérification du rôle "ADMIN"
+        String token = userService.login(userDTO, true);
+        return ResponseEntity.ok(token);
+    }
+
 
     // Endpoint for handling forgotten password
     @PostMapping("/forgot-password")

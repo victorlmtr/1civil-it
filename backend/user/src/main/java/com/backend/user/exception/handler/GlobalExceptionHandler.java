@@ -45,4 +45,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleInvalidPasswordException(InvalidPasswordException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
+
+    // Handles AccessDeniedException and returns a 403 forbidden response
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<String> handleAccessDeniedException(AccessDeniedException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
+    }
 }

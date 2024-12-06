@@ -188,20 +188,27 @@ public class UserService {
     }
 
 
-    // Log in a user and generate a JWT token
+    // Méthode utilisée par l'application mobile
     public String login(UserDTO userDTO) {
+        return login(userDTO, false); // Par défaut, la requête n'est pas considérée comme venant de l'application desktop
+    }
 
-        // Verify credentials (if the user exists)
+    // Méthode utilisée par l'application desktop
+    public String login(UserDTO userDTO, boolean isDesktopRequest) {
+        // Logique existante
         User user = userRepository.findByEmail(userDTO.getEmail())
                 .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND.value()));
 
-        // Check if the user is enabled
         if (!user.getIsenabled()) {
             System.out.println("Compte non activé pour l'email: " + userDTO.getEmail());
-            throw new AccountNotVerifiedException(HttpStatus.FORBIDDEN.value()); // The account is not activated
+            throw new AccountNotVerifiedException(HttpStatus.FORBIDDEN.value());
         }
 
-        // Authenticate via AuthenticationManager
+        if (isDesktopRequest && !user.getRole().getRolename().contains("Admin")) {
+            System.out.println("Accès refusé pour l'utilisateur non admin : " + userDTO.getEmail());
+            throw new AccessDeniedException(HttpStatus.FORBIDDEN.value());
+        }
+
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword())
@@ -211,10 +218,7 @@ public class UserService {
             throw new InvalidCredentialsException(HttpStatus.UNAUTHORIZED.value());
         }
 
-        // authentication ok and user isEnabled
         System.out.println("Authentification réussie pour l'utilisateur : " + user.getEmail());
-
-        // Generate and return the JWT token
         return jwtTokenService.generateToken(userDTO.getEmail());
     }
 

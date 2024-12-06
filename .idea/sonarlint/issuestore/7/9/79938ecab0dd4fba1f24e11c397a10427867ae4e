@@ -1,32 +1,35 @@
 
-h	java:S112€"FDefine and throw a dedicated exception instead of using a generic one.(Š®’Ìûÿÿÿÿ8ªúÂá¹2
+	java:S112„"FDefine and throw a dedicated exception instead of using a generic one.(Š®’Ìûÿÿÿÿ8‘ëå¹2J$537bca62-bfb6-4b5d-8286-6533ec2d3619
 q
-java:S5411Ç"(Use a primitive boolean expression here.(‚²ûÇùÿÿÿÿ8ë›†µ¹2J$130d07d1-c99d-4267-b508-9c35a9bd5d03
+java:S5411Ê"(Use a primitive boolean expression here.(‚²ûÇùÿÿÿÿ8’‘ëå¹2J$75b79ec8-07db-43b9-b95b-32cc69acd76f
 …
-java:S6813&"BRemove this field injection and use constructor injection instead.(êæÄŞ8ºœ†µ¹2J$605bac07-191b-4d06-b62d-e6814fce409e
+java:S6813&"BRemove this field injection and use constructor injection instead.(êæÄŞ8±‘ëå¹2J$67eaeedb-1e97-4149-bf8b-5c11a3454071
 …
-java:S6813)"BRemove this field injection and use constructor injection instead.(êæÄŞ8ºœ†µ¹2J$f220d425-747f-4b30-8906-d3f72eb7d4c6
+java:S6813)"BRemove this field injection and use constructor injection instead.(êæÄŞ8±‘ëå¹2J$9377accb-e4f2-4cbb-a3d5-0d2313c9056f
 …
-java:S6813,"BRemove this field injection and use constructor injection instead.(êæÄŞ8»œ†µ¹2J$9bfbf0e1-cbc2-4e17-8659-92f6394717d5
+java:S6813,"BRemove this field injection and use constructor injection instead.(êæÄŞ8±‘ëå¹2J$142f42c4-14f3-480c-8e21-b2a8ec4ab9e2
 …
-java:S6813/"BRemove this field injection and use constructor injection instead.(êæÄŞ8»œ†µ¹2J$9a7a2df8-7614-4cba-9b04-ce11457ffbf1
+java:S6813/"BRemove this field injection and use constructor injection instead.(êæÄŞ8±‘ëå¹2J$2f2b3081-b0d6-45b7-b959-65dc42e6a680
 …
-java:S68132"BRemove this field injection and use constructor injection instead.(êæÄŞ8»œ†µ¹2J$c8660d82-d04e-46fd-a5dd-0768c2172f96
+java:S68132"BRemove this field injection and use constructor injection instead.(êæÄŞ8±‘ëå¹2J$d7a4ede1-6ccb-4081-9a8f-ba29e81d9462
 …
-java:S68135"BRemove this field injection and use constructor injection instead.(êæÄŞ8»œ†µ¹2J$59886822-d5dc-4d6d-adf1-c91c30b1e3d8
+java:S68135"BRemove this field injection and use constructor injection instead.(êæÄŞ8±‘ëå¹2J$5b45914f-19e7-4c28-9aab-afcb60eaa9ca
 …
-java:S68138"BRemove this field injection and use constructor injection instead.(êæÄŞ8»œ†µ¹2J$c0a44ed6-736a-4249-84f8-7264c42afc9a
+java:S68138"BRemove this field injection and use constructor injection instead.(êæÄŞ8±‘ëå¹2J$eb3ccda1-77c5-4c94-b97e-10cfa7ca2e14
 …
-java:S6813;"BRemove this field injection and use constructor injection instead.(êæÄŞ8¼œ†µ¹2J$54c8f77b-babd-4275-af5e-9344e6f416df
+java:S6813;"BRemove this field injection and use constructor injection instead.(êæÄŞ8±‘ëå¹2J$77829a4f-b016-4ce1-abbd-e4d5f5416d8a
 …
-java:S6813>"BRemove this field injection and use constructor injection instead.(êæÄŞ8¼œ†µ¹2J$f49bc0dd-4b96-45ba-b81f-f0f09da6123f
+java:S6813>"BRemove this field injection and use constructor injection instead.(êæÄŞ8±‘ëå¹2J$f9a9ba89-0101-40c8-a5db-8cd94602628b
 …
-java:S6813A"BRemove this field injection and use constructor injection instead.(êæÄŞ8¼œ†µ¹2J$ecddb6f2-8505-4734-a97d-36f92c42762e
+java:S6813A"BRemove this field injection and use constructor injection instead.(êæÄŞ8²‘ëå¹2J$e6abf450-20c9-4347-b417-39296c861a72
 ½
-java:S6204}"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹8†µ¹2J$28a467ba-163e-4008-bb98-6afdd7acb214
-s	java:S106È"+Replace this use of System.out by a logger.(¢´²Óÿÿÿÿÿ8˜†µ¹2J$a02cb0ca-5607-4f94-aa21-939c91189b50
-s	java:S106Ò"+Replace this use of System.out by a logger.(åÉ¥³ÿÿÿÿÿ8œ†µ¹2J$4b887ba1-95ba-4e49-b1c2-f57d806f8fca
-s	java:S106×"+Replace this use of System.out by a logger.(÷˜ÕÄûÿÿÿÿ8†µ¹2J$f737d821-26f3-423a-83cf-1beb8056da7a
-n	java:S106â"+Replace this use of System.out by a logger.(©Ô¹ë8œºİŞ¹2J$7cf2012a-f64e-4cf0-b09a-ab15fb1d76c8
+java:S6204}"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹8½‘ëå¹2J$f2a4c525-8395-4c30-81bb-339a4a354b92
+™
+java:S3776Å"PRefactor this method to reduce its Cognitive Complexity from 4 to the 2 allowed.( ÎîĞüÿÿÿÿ8Ç‘ëå¹2J$03abc987-a388-4b4e-9831-6e89d99cf87e
+s	java:S106Ë"+Replace this use of System.out by a logger.(¢´²Óÿÿÿÿÿ8É‘ëå¹2J$10f88f65-b487-4fad-ad81-7e68b9328d4b
+s	java:S106Ğ"+Replace this use of System.out by a logger.(Ì¡ÿÿÿÿÿ8Ê‘ëå¹2J$b8327687-9c20-43d1-ac28-dec83327ba34
+s	java:S106Ù"+Replace this use of System.out by a logger.(åÉ¥³ÿÿÿÿÿ8Ì‘ëå¹2J$68415543-1141-49a6-8224-af35505309b7
+s	java:S106İ"+Replace this use of System.out by a logger.(÷˜ÕÄûÿÿÿÿ8Ì‘ëå¹2J$9e894246-5c85-4d87-90d3-6ca9417667e7
+n	java:S106æ"+Replace this use of System.out by a logger.(©Ô¹ë8Í‘ëå¹2J$c9f8b424-28b0-447d-b8f8-dd1549011eb4
 †
-java:S1128"DRemove this unused import 'jakarta.servlet.http.HttpServletRequest'.(õ38÷ºà¹2J$230d4c05-5a0d-436d-a152-433fe2d05c7e
+java:S1128"DRemove this unused import 'jakarta.servlet.http.HttpServletRequest'.(õ38ìôæ¹2J$7dad11e1-754f-495c-ba42-ca097d977272
