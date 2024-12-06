@@ -76,7 +76,7 @@ Future<void> createReport(BuildContext context) async {
   // Construct report type object
   final reportType = ReportTypeDto(
     id: 1,
-    typeName: "Stationnement interdit",
+    typename: "Stationnement interdit",
   );
 
   // Create the full report object
