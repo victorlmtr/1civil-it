@@ -262,7 +262,7 @@ public class UserService {
     }
 
 
-    // Deconnect user and add token to a blacklist
+    // Disconnect user and add token to a blacklist
     public void logout(String token) throws IllegalArgumentException {
 
         if (token == null) {
@@ -272,6 +272,10 @@ public class UserService {
 
         // Add token to blacklist
         tokenBlacklist.add(token);
+    }
+
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
 }
