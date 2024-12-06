@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {catchError, Observable, throwError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,9 +32,21 @@ export class AuthService {
     localStorage.removeItem('authToken');
   }
 
-  // Réinitialisation du mot de passe
+  // appel de la méthode pour l'envoi du lien de réinitialisation du mot de passe
   forgotPassword(email: string): Observable<any> {
     const payload = { email };
     return this.http.post<any>(`${this.apiUrl}/forgot-password`, payload);
+  }
+
+  // appel de la méthode pour la réinitialisation du mdp
+  resetPassword(token: string, newPassword: string) {
+    const url = `${this.apiUrl}/reset-password?token=${token}`;
+    return this.http.post(url, { newPassword }).pipe(
+
+      catchError(error => {
+        // On lance l'erreur pour que le composant puisse la gérer
+        return throwError(() => error);
+      })
+    );
   }
 }

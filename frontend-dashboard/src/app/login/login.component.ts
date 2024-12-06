@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from "../core/services/auth.service";
-import { Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 declare let bootstrap: any;
 
 @Component({
@@ -63,34 +62,26 @@ export class LoginComponent {
 
   // Soumettre la réinitialisation du mot de passe
   onForgotPasswordSubmit() {
+    // Fermer la modale immédiatement après soumission
+    const modalElement = document.getElementById('forgotPasswordModal');
+    if (modalElement) {
+      const modal = bootstrap.Modal.getInstance(modalElement);
+      modal?.hide();
+    }
+
+    // Soumettre la requête pour réinitialiser le mot de passe
     this.authService.forgotPassword(this.forgotEmail).subscribe({
-      next: () => {
-        // Afficher l'alerte de succès
-        const alertElement = document.getElementById('successAlert');
-        if (alertElement) {
-          alertElement.classList.remove('d-none');
-          alertElement.classList.add('show');
-        }
+      next: (response) => {
 
-        // Fermer la modale
-        const modalElement = document.getElementById('forgotPasswordModal');
-        if (modalElement) {
-          const modal = bootstrap.Modal.getInstance(modalElement);
-          modal?.hide();
+        console.log('Réponse du backend:', response); // Vérifier la structure de la réponse
+        if (response.message) {
+          alert(response.message);
         }
-
-        // Masquer l'alerte après 3 secondes
-        setTimeout(() => {
-          if (alertElement) {
-            alertElement.classList.remove('show');
-            alertElement.classList.add('d-none');
-          }
-        }, 3000);
       },
       error: (error) => {
-        alert("Erreur : " + (error.error.message || "Une erreur est survenue."));
+        console.error("Erreur lors de la réinitialisation du mot de passe :", error); // Log de l'erreur
+        alert("Erreur : " + (error?.error?.message || "Une erreur est survenue."));
       }
-    });
-  }
-
+  })
+}
 }

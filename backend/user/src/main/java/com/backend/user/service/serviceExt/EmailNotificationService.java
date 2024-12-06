@@ -49,12 +49,20 @@ public class EmailNotificationService {
 
 
     // Méthode pour envoyer un email de réinitialisation de mot de passe
-    public void sendPasswordResetEmail(User user, String resetToken) {
+    public void sendPasswordResetEmail(User user, String resetLink) {
+        String subject = "Réinitialisation de votre mot de passe";
+        String body = String.format(
+                "Bonjour %s %s,\n\n" +
+                        "Nous avons reçu une demande pour réinitialiser le mot de passe de votre compte.\n\n" +
+                        "Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien ci-dessous : \n\n" +
+                        "%s\n\n" +
+                        "Si vous n'êtes pas à l'origine de cette demande, veuillez ignorer ce message.\n\n" +
+                        "Cordialement,\n" +
+                        "L'équipe 1civil-it",
+                user.getFirstname(), user.getLastname(), resetLink
+        );
 
-        String resetLink = "http://localhost:8080/api-user/auth/reset-password?token=" + resetToken;
-        String subject = "Réinitialisation de mot de passe";
-        String body = "Cliquez sur le lien suivant pour réinitialiser votre mot de passe : " + resetLink;
-
+        // Envoi de l'email avec le corps de l'email et le sujet
         emailSenderService.sendEmail(user.getEmail(), subject, body);
     }
 }

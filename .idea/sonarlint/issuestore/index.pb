@@ -239,3 +239,11 @@ d
 4frontend-dashboard/src/app/login/login.component.css,8\f\8fa8bddcba1cc9ee1c309f3727ea1475eb42268c
 \
 ,frontend-dashboard/src/app/app.component.css,0\2\0274c2fa010e633f9ef284da747c22f6f86b6795
+u
+Efrontend-dashboard/src/app/reset-password/reset-password.component.ts,5\d\5d22d9a560744c2183d6378e34b46fbebb409b2b
+w
+Gfrontend-dashboard/src/app/reset-password/reset-password.component.html,6\d\6d16daed2c350da411771233486bb275cbc0266a
+z
+Jfrontend-dashboard/src/app/reset-password/reset-password.component.spec.ts,1\b\1b17fd75219af78a340e43930c57b5b9c3d392eb
+v
+Ffrontend-dashboard/src/app/reset-password/reset-password.component.css,0\b\0b0d74404ae4bb98cc4692c3e3b91302fe676dca

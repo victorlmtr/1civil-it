@@ -25,7 +25,9 @@ import org.springframework.stereotype.Service;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -220,46 +222,58 @@ public class UserService {
     // Handle forgot password by sending a reset token
     public void handleForgotPassword(String email) {
 
+        // Afficher l'email reçu
         System.out.println("Email reçu : " + email);
 
-        // Check if the user exists
+        // Vérifier si l'utilisateur existe
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND.value()));
 
-        // Generate a password reset token
+        // Générer un jeton de réinitialisation de mot de passe
         String resetToken = jwtTokenService.generateToken(email);
 
-        // send the reset mail
-        emailNotificationService.sendPasswordResetEmail(user, resetToken);  // Utilisation du service
+        // Construire le lien de réinitialisation
+        String resetLink = buildResetPasswordLink(resetToken);
+
+        // Envoyer l'email de réinitialisation du mot de passe
+        emailNotificationService.sendPasswordResetEmail(user, resetLink);
+    }
+
+    // Méthode pour construire le lien de réinitialisation du mot de passe
+    private String buildResetPasswordLink(String token) {
+        return "http://localhost:4200/reset-password?token=" + URLEncoder.encode(token, StandardCharsets.UTF_8);
     }
 
 
     // Reset the user's password using a token and new password
-    public String resetPassword(String token, String newPassword) {
-        try {
-
-            if (!jwtTokenService.validateToken(token)) {
-                throw new RuntimeException("Token invalide ou expiré.");
-            }
-
-            // Extract the email from the token
-            String email = jwtTokenService.extractEmailFromToken(token);
-
-            // Retrieve the user by email
-            User user = userRepository.findByEmail(email)
-                    .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND.value()));
-
-            // Update the password
-            user.setPasswordhash(passwordEncoder.encode(newPassword));
-            userRepository.save(user);
-
-            return "Mot de passe réinitialisé avec succès.";
-
-        } catch (Exception e) {
-
-            throw new RuntimeException("Erreur lors de la réinitialisation du mot de passe : " + e.getMessage());
+    public Map<String, String> resetPassword(String token, String newPassword) {
+        // Vérification de la force du mot de passe
+        if (!isPasswordStrong(newPassword)) {
+            throw new InvalidPasswordException(HttpStatus.BAD_REQUEST.value());
         }
+
+        if (!jwtTokenService.validateToken(token)) {
+            throw new RuntimeException("Token invalide ou expiré.");
+        }
+
+        // Extraire l'email du token
+        String email = jwtTokenService.extractEmailFromToken(token);
+
+        // Récupérer l'utilisateur par email
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND.value()));
+
+        // Mettre à jour le mot de passe
+        user.setPasswordhash(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+
+        // Créer un objet JSON avec le message
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Mot de passe réinitialisé avec succès.");
+
+        return response;  // Renvoi de la réponse sous forme d'objet JSON
     }
+
 
 
     // Deconnect user and add token to a blacklist
