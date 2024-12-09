@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -70,43 +71,47 @@ public class AuthController {
         return ResponseEntity.ok(Map.of("token", token));
     }
 
+    @PostMapping("/login-desktop")
+    public ResponseEntity<String> loginDesktop(@RequestBody UserDTO userDTO) {
+
+        // Appel à la méthode de login avec la vérification du rôle "ADMIN"
+        String token = userService.login(userDTO, true);
+        return ResponseEntity.ok(token);
+    }
+
 
     // Endpoint for handling forgotten password
     @PostMapping("/forgot-password")
-    public ResponseEntity<String> forgotPassword(@RequestBody Map<String, String> request) {
+    public ResponseEntity<Map<String, String>> forgotPassword(@RequestBody Map<String, String> request) {
+        Map<String, String> response = new HashMap<>();
 
         try {
-
             String email = request.get("email");
 
-            // Call the service to handle password reset logic
+            // Appel au service pour gérer la réinitialisation du mot de passe
             userService.handleForgotPassword(email);
 
-            return ResponseEntity.ok("Un email de réinitialisation a été envoyé.");
+            response.put("message", "Un email de réinitialisation a été envoyé.");
+            return ResponseEntity.ok(response);
 
         } catch (Exception e) {
 
-            return ResponseEntity.badRequest().body("Erreur : " + e.getMessage());
+            response.put("message", "Erreur : " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
         }
     }
 
 
     // Endpoint for resetting the password with a token and new password
     @PostMapping("/reset-password")
-    public ResponseEntity<String> resetPassword(@RequestParam("token") String token, @RequestBody Map<String, String> request) {
-        try {
+    public ResponseEntity<Map<String, String>> resetPassword(@RequestParam("token") String token, @RequestBody Map<String, String> request) {
+        // Call the service to reset the password
+        String newPassword = request.get("newPassword");
 
-            String newPassword = request.get("newPassword");
+        // Appeler le service pour réinitialiser le mot de passe
+        Map<String, String> response = userService.resetPassword(token, newPassword);
 
-            // Call the service to reset the password
-            String response = userService.resetPassword(token, newPassword);
-
-            return ResponseEntity.ok(response);
-
-        } catch (Exception e) {
-
-            return ResponseEntity.badRequest().body("Erreur : " + e.getMessage());
-        }
+        return ResponseEntity.ok(response);  // Réponse JSON
     }
 
 
@@ -132,6 +137,20 @@ public class AuthController {
             // handle exceptions and errors
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de la déconnexion : " + e.getMessage());
         }
+    }
+
+
+    @GetMapping("/current-user-id")
+    public ResponseEntity<Integer> getCurrentUserId(@RequestHeader("Authorization") String authorizationHeader) {
+
+        // extract token from header autorization
+        String token = authorizationHeader.replace("Bearer ", "");
+
+        // get user id from token
+        int userId = userService.getUserIdFromToken(token);
+
+        // return id
+        return ResponseEntity.ok(userId);
     }
 
 

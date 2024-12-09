@@ -1,13 +1,14 @@
-body {
-  margin-bottom: 80px;
-  background-color: #F8F8FF;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #F8F8FF;  /* Applique le fond à toute la page */
 }
-.footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 0.9rem;
-  z-index: 10;
+
+/* Conteneur principal pour appliquer le fond */
+.background-container {
+  min-height: 100%;  /* Assure que le conteneur prend toute la hauteur de la fenêtre */
+  display: flex;
+  flex-direction: column;
+  background-color: #F8F8FF;  /* Applique la couleur de fond */
 }
