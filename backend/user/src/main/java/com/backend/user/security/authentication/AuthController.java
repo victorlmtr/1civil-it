@@ -49,13 +49,26 @@ public class AuthController {
 
     // Endpoint for user login
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<?> login(
+            @RequestBody UserDTO userDTO,
+            @RequestParam(required = false, defaultValue = "false") boolean includeUserId) {
 
         // Call the service to handle login and return a JWT token
         String token = userService.login(userDTO);
 
-        // If an exception occurs, it will be handled by GlobalExceptionHandler
-        return ResponseEntity.ok(token);
+        // Conditionally include userId in the response
+        if (includeUserId) {
+            // Retrieve user information (e.g., userId) from the service
+            Integer userId = userService.findByEmail(userDTO.getEmail())
+                    .orElseThrow(() -> new RuntimeException("User not found")) // Replace with custom exception
+                    .getId();
+
+            // Return a response with both token and userId
+            return ResponseEntity.ok(Map.of("token", token, "userId", userId));
+        }
+
+        // Default response (token only)
+        return ResponseEntity.ok(Map.of("token", token));
     }
 
     @PostMapping("/login-desktop")

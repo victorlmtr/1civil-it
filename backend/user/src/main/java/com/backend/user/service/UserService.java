@@ -279,8 +279,8 @@ public class UserService {
     }
 
 
+    // Disconnect user and add token to a blacklist
 
-    // Deconnect user and add token to a blacklist
     public void logout(String token) throws IllegalArgumentException {
 
         if (token == null) {
@@ -292,7 +292,6 @@ public class UserService {
         tokenBlacklist.add(token);
     }
 
-
     public int getUserIdFromToken(String token) {
         // extract mail from token
         String email = jwtTokenService.extractEmailFromToken(token);
@@ -303,6 +302,10 @@ public class UserService {
 
         // return user id
         return user.getId();
+
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+
     }
 
 }
