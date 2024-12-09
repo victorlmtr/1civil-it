@@ -4,9 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
+import '../api/SecureStorageService.dart';
 import '../models/report_dto.dart';
 
+final SecureStorageService _storageService = SecureStorageService();
+
 Future<void> createReport(BuildContext context) async {
+  // Retrieve the userId from secure storage
+  final userId = await _storageService.getUserId();
+  if (userId == null) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('User not logged in.')),
+    );
+    return;
+  }
+
   final image = await _captureImage();
   if (image == null) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -37,6 +49,7 @@ Future<void> createReport(BuildContext context) async {
     return;
   }
 
+  // Construct city report
   final cityReport = CityReportDto(
     id: reportId,
     cityName: addressData['city'],
@@ -44,6 +57,7 @@ Future<void> createReport(BuildContext context) async {
     inseeCode: addressData['id'],
   );
 
+  // Construct location object
   final reportLocation = LocationDto(
     id: reportId,
     latitude: location.latitude,
@@ -52,40 +66,45 @@ Future<void> createReport(BuildContext context) async {
     cityReport: cityReport,
   );
 
+  // Construct picture object
   final picture = PictureDto(
     id: reportId,
-    pictureUrl: pictureUrl,
-    data: "",
+    pictureurl: pictureUrl,
+    data: "test",
   );
 
+  // Construct report type object
   final reportType = ReportTypeDto(
     id: 1,
-    typeName: "Stationnement interdit",
+    typename: "Stationnement interdit",
   );
 
+  // Create the full report object
   final report = ReportDto(
     id: reportId,
-    userId: 1,  // User ID should be fetched dynamically (e.g., from shared preferences or authentication)
-    creationDate: DateTime.now(),
-    comment: "",
-    reportType: reportType,
-    location: reportLocation,
+    userid: int.parse(userId), // Use the retrieved userId
+    creationdate: DateTime.now(),
+    comment: "test",
+    typeid: reportType,
+    locationid: reportLocation,
     pictures: [picture],
   );
 
-  // Send the report data to the backend API
+  // Send the report to the backend
   await _sendReportToBackend(report, context);
 }
 
+
 Future<void> _sendReportToBackend(ReportDto report, BuildContext context) async {
-  const apiUrl = 'http://192.168.1.21:8082/api/reports/reports'; // Spring Boot API endpoint
+  const apiUrl = 'http://192.168.1.21:8082/api/reports/reports'; // Backend API endpoint
 
   try {
     final response = await http.post(
       Uri.parse(apiUrl),
       headers: {'Content-Type': 'application/json'},
-      body: json.encode(report.toJson()), // Assuming `toJson()` serializes the report
+      body: json.encode(report.toJson()),
     );
+    print('Sending report with: ${json.encode(report.toJson())}');
 
     if (response.statusCode == 201) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -156,15 +175,13 @@ Future<String?> _uploadImage(File image, int reportId) async {
 
     final response = await request.send();
 
-    // Read and log the response body for debugging
     final responseBody = await response.stream.bytesToString();
-    print('Response Body: $responseBody'); // Debug: Print server response
+    print('Response Body: $responseBody'); // Debugging
 
-    // If status code is 200, return the URLs from the response
     if (response.statusCode == 200) {
       final responseJson = json.decode(responseBody);
       final fileUrls = responseJson['urls'] as List;
-      return fileUrls.isNotEmpty ? fileUrls[0] : null; // Return the first uploaded image URL
+      return fileUrls.isNotEmpty ? fileUrls[0] : null;
     } else {
       print('Failed to upload image: ${response.statusCode}');
     }

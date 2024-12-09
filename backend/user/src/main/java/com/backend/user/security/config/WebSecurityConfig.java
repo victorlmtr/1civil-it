@@ -18,14 +18,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-
-import java.util.Arrays;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.List;
+
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig {
+public class WebSecurityConfig implements WebMvcConfigurer {
 
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -44,40 +43,30 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(CustomUserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
-
-        // Configures DaoAuthenticationProvider with the provided user details service and password encoder
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(passwordEncoder);
         return provider;
     }
 
-
     @Bean
     public AuthenticationManager authenticationManager(DaoAuthenticationProvider daoAuthenticationProvider) {
-
-        // Creates an AuthenticationManager with the provided DaoAuthenticationProvider for authentication
         return new ProviderManager(List.of(daoAuthenticationProvider));
     }
 
-
     @Bean
     public PasswordEncoder passwordEncoder() {
-
-        // Returns a BCryptPasswordEncoder to handle password encoding
         return new BCryptPasswordEncoder();
     }
-
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowedOrigins(List.of("*"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
