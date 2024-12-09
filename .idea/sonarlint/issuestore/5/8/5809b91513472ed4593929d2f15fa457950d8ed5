@@ -1,8 +1,8 @@
 
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8¿˜ùî¶2J$8c010b82-1828-42fc-8aee-3db142b053ce
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8¿˜ùî¶2J$72feba08-60ad-4d4c-b4fb-3950c6244f75
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8¿˜ùî¶2J$a15f832e-4602-482e-8662-5220abc46230
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8¿˜ùî¶2J$fc9054fc-01ae-4bd8-8435-3751ffd45644
 ½
-java:S6204'"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹8éã¥õ¶2J$502901c6-6efe-440a-b066-25398cff584b
-r	java:S1064"+Replace this use of System.out by a logger.(ò£ÁÖøÿÿÿÿ8°ƒ‡ø¶2J$758ce873-6e8a-422b-abbc-1446f4be575c
+java:S6204'"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹8éã¥õ¶2J$18303b7e-811c-40e5-8e81-9e2f131f83d4
+r	java:S1064"+Replace this use of System.out by a logger.(ò£ÁÖøÿÿÿÿ8°ƒ‡ø¶2J$aa06f950-1cf1-413a-b9eb-de911617c536

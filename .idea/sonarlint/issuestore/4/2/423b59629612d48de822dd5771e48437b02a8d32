@@ -1,20 +1,20 @@
 
-n
+”
 java:S1192"QDefine a constant instead of duplicating this literal "Bonjour %s %s,
 
-" 3 times.(ø‚û8ôëŞŞ¹2
+" 3 times.(ø‚û8ôëŞŞ¹2J$73a4a708-5ea7-4ffa-a274-fe1755c127cb
 —
 java:S1192"ODefine a constant instead of duplicating this literal "Cordialement,
-" 3 times.(É€ˆúÿÿÿÿ8¢æİ¹2J$4973aa03-22b7-4341-a214-ba843c053dcd
-œ
-java:S1192"TDefine a constant instead of duplicating this literal "L'Ã©quipe 1civil-it" 3 times.(÷ È™üÿÿÿÿ8èôçİ¹2J$1dc85a48-12c0-49d6-a61a-786a8a9dc7e9
-•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é°ŒéJ$f27e02c5-82b0-42ea-9e85-655c795dc7be
+" 3 times.(É€ˆúÿÿÿÿ8¢æİ¹2J$672601ba-0307-48e1-aabc-b636da38af7f
+p
+java:S1192"TDefine a constant instead of duplicating this literal "L'Ã©quipe 1civil.it" 3 times.(ˆ–³8åş›º2
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é°ŒéJ$195d6dc7-37e0-4666-9465-78dedd94843c
 …
 java:S6813
-"BRemove this field injection and use constructor injection instead.(êæÄŞ8ï‘«›¸2J$2ca22fe6-1942-411e-a1c9-b81765063e35
+"BRemove this field injection and use constructor injection instead.(êæÄŞ8ï‘«›¸2J$34c63b57-7537-4a68-ad47-2a919f4244cf
 u
-java:S6126"2Replace this String concatenation with Text block.(ø‚û8ºèª›¸2J$0842f829-5054-4338-b712-430dfaac0785
+java:S6126"2Replace this String concatenation with Text block.(ø‚û8ºèª›¸2J$b2d73628-b1a7-4ebd-9f11-9ce8daf3614a
 u
-java:S6126#"2Replace this String concatenation with Text block.(ø‚û8¼èª›¸2J$6751150d-8249-4763-86e4-9354c56b649c
-O
-java:S61267"2Replace this String concatenation with Text block.(ø‚û8ŠìŞŞ¹2
+java:S6126#"2Replace this String concatenation with Text block.(ø‚û8¼èª›¸2J$b261883d-c0e1-4fc9-a1ad-46bc8bd48e1d
+u
+java:S61267"2Replace this String concatenation with Text block.(ø‚û8ŠìŞŞ¹2J$8768ee16-d871-41db-a37a-9c5ef0525ee7

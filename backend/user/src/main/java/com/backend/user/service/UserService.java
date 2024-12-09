@@ -12,7 +12,6 @@ import com.backend.user.model.repository.UserRepository;
 import com.backend.user.security.tokenJWT.TokenBlacklist;
 import com.backend.user.service.serviceExt.EmailNotificationService;
 import com.backend.user.security.tokenJWT.JwtTokenService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -99,7 +98,10 @@ public class UserService {
         user.setRole(role);
 
         // 7. Find or create the city
-        CityDTO cityDTO = cityService.findOrCreateCity(userDTO.getCity().getPostcode(), userDTO.getCity().getInseecode(), userDTO.getCity().getCityname());
+        CityDTO cityDTO = cityService.findOrCreateCity(
+                userDTO.getCity().getPostcode(),
+                userDTO.getCity().getInseecode(),
+                userDTO.getCity().getCityname());
         user.setCity(cityMapper.toEntity(cityDTO));
 
         // 8. Save the user in the database
@@ -168,12 +170,18 @@ public class UserService {
 
     // Constructs the verification link for the account based on the generated JWT token
     private String buildVerificationLink(String token) {
-        return "http://localhost:8081/api-user/auth/verify?token=" + URLEncoder.encode(token, StandardCharsets.UTF_8);
+        return "http://localhost:8081/api-user/auth/verify?token=" +
+                URLEncoder.encode(token, StandardCharsets.UTF_8);
     }
 
 
     // Verifies the user's account by enabling the user and sending a validation email
     public void verifyAccount(String token) {
+
+        // Validate the token before processing
+        if (!jwtTokenService.validateToken(token)) {
+            throw new InvalidTokenException(HttpStatus.UNAUTHORIZED.value());
+        }
 
         String email = jwtTokenService.extractEmailFromToken(token);
 

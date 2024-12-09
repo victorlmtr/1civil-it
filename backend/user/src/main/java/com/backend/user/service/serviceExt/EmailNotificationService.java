@@ -20,7 +20,7 @@ public class EmailNotificationService {
                         "%s\n\n" +
                         "Ce lien expirera dans 24 heures.\n\n" +
                         "Cordialement,\n" +
-                        "L'équipe 1civil-it",
+                        "L'équipe 1civil.it",
                 user.getFirstname(), user.getLastname(), verificationLink
         );
 
@@ -38,7 +38,7 @@ public class EmailNotificationService {
                         "Email : %s\n" +
                         "Vous pouvez désormais vous connecter à votre compte en utilisant ces informations.\n\n" +
                         "Cordialement,\n" +
-                        "L'équipe 1civil-it",
+                        "L'équipe 1civil.it",
                 user.getFirstname(),
                 user.getLastname(),
                 user.getEmail()
@@ -58,7 +58,7 @@ public class EmailNotificationService {
                         "%s\n\n" +
                         "Si vous n'êtes pas à l'origine de cette demande, veuillez ignorer ce message.\n\n" +
                         "Cordialement,\n" +
-                        "L'équipe 1civil-it",
+                        "L'équipe 1civil.it",
                 user.getFirstname(), user.getLastname(), resetLink
         );
 

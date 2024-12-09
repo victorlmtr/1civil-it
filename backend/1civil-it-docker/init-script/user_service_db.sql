@@ -98,10 +98,14 @@ INSERT INTO public.role (roleName) VALUES
 ------------------------------------------------------------
 -- Insertion des données factices pour la table users
 ------------------------------------------------------------
-INSERT INTO public.users (firstName, lastName, passwordHash, creationDate, email, phoneNumber, isVerified, isEnabled, roleId, cityId) VALUES 
-('John', 'Doe', 'hash_password_john', NOW(), 'john.doe@example.com', '0123456789', true, true, 1, 1),
-('Jane', 'Smith', 'hash_password_jane', NOW(), 'jane.smith@example.com', '0987654321', true, true, 2, 2),
-('Alice', 'Johnson', 'hash_password_alice', NOW(), 'alice.johnson@example.com', '0567891234', false, true, 2, 3);
+INSERT INTO public.users (firstName, lastName, passwordHash, creationDate, email, phoneNumber,
+                          isVerified, isEnabled, roleId, cityId) VALUES
+('John', 'Doe', 'hash_password_john', NOW(), 'john.doe@example.com', '0123456789',
+ true, true, 1, 1),
+('Jane', 'Smith', 'hash_password_jane', NOW(), 'jane.smith@example.com', '0987654321',
+ true, true, 2, 2),
+('Alice', 'Johnson', 'hash_password_alice', NOW(), 'alice.johnson@example.com', '0567891234',
+ false, true, 2, 3);
 
 ------------------------------------------------------------
 -- Insertion des données factices pour la table address

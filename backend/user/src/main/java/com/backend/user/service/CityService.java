@@ -84,7 +84,6 @@ public class CityService {
     public CityDTO findOrCreateCity(String postCode, String inseeCode, String cityName) {
 
         Optional<City> optionalCity = cityRepository.findByPostcodeAndInseecode(postCode, inseeCode);
-
         City city;
 
         // if City is existing, get it
